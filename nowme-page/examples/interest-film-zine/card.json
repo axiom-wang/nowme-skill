@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "displayName": "栗子",
+  "tagline": "凌晨四点去菜市场，用胶片拍摊主的手",
+  "hooks": [
+    {
+      "id": "dawn-market",
+      "kind": "join-me",
+      "text": "想找人一起凌晨去菜市场拍照",
+      "opener": "栗子你好！我也想试试凌晨去菜市场拍照，下次能带上我吗？"
+    },
+    {
+      "id": "film-lab",
+      "kind": "ask-guide",
+      "text": "求推荐靠谱的胶片冲洗店",
+      "opener": "嗨，我知道一家冲扫不错的店，想跟你交换一下冲洗店清单～"
+    },
+    {
+      "id": "gold-200",
+      "kind": "recommend",
+      "text": "推荐你用柯达 Gold 200 拍清晨",
+      "opener": "你好！看到你推荐 Gold 200 拍清晨，想问问你一般怎么测光？"
+    }
+  ]
+}

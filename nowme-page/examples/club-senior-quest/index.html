@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN" class="nm-theme-night" data-nm-motion="lively">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>周一鸣 · 桌游社的“规则书本人”</title>
+<link rel="stylesheet" href="/_nowme/kit/v1/nowme.css">
+<script src="/_nowme/kit/v1/nowme.js"></script>
+<style>
+  :root {
+    --nm-font-body: var(--nm-font-noto-sans-sc);
+    --nm-font-display: var(--nm-font-smiley-sans);
+    --nm-display-weight: 400;
+    --hud: "JetBrains Mono", var(--nm-font-noto-sans-sc);
+    --gold: #ffcf5c;
+    --violet: #8b7bff;
+    --cyan: #5ce1e6;
+    --panel: #141a38;
+    --line: #eef0ff;
+    --px: 4px;
+  }
+  body { font-size: 15px; line-height: 1.7; font-weight: 500; background-image: linear-gradient(rgba(238, 240, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(238, 240, 255, 0.04) 1px, transparent 1px); background-size: 16px 16px; }
+  .sky { position: fixed; inset: 0; z-index: 0; }
+  main { position: relative; z-index: 1; }
+
+  /* 像素描边：四边各一条，角上留缺口 */
+  .px { position: relative; margin: var(--px); background: var(--panel); box-shadow: 0 calc(var(--px) * -1) 0 0 var(--c, var(--line)), 0 var(--px) 0 0 var(--c, var(--line)), calc(var(--px) * -1) 0 0 0 var(--c, var(--line)), var(--px) 0 0 0 var(--c, var(--line)); }
+  .hud-font { font-family: var(--hud); font-weight: 800; letter-spacing: 0.04em; }
+
+  /* ---------- 首屏：角色卡 ---------- */
+  .hero { padding: 18px 0 28px; }
+  .hud { display: flex; justify-content: space-between; font-size: 11px; color: var(--cyan); }
+  .hud b { color: var(--gold); font-weight: 800; }
+  .sheet { display: grid; grid-template-columns: 104px 1fr; gap: 14px; align-items: center; margin-top: 16px; padding: 14px; --c: var(--gold); }
+  .avatar { width: 104px; height: 104px; background: #1e2650; image-rendering: pixelated; }
+  .avatar svg { display: block; width: 100%; height: 100%; }
+  .name { font-family: var(--nm-font-display); font-size: 42px; line-height: 1.05; color: #fff; }
+  .class { margin-top: 4px; font-size: 13px; color: var(--gold); }
+  .meta { margin-top: 6px; font-size: 12px; color: var(--nm-muted); }
+  .years { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; margin-top: 14px; font-size: 11px; }
+  .years .nm-meter { --nm-meter-height: 12px; --nm-meter-color: var(--gold); --nm-surface-2: #2b3466; }
+  .years span:last-child { color: var(--gold); }
+  .dialog { margin-top: 18px; padding: 14px 16px 18px; --c: var(--line); background: #0b1026; }
+  .dialog__who { font-family: var(--nm-font-display); font-size: 17px; color: var(--gold); }
+  .dialog__text { margin-top: 4px; min-height: 3.4em; font-size: 17px; line-height: 1.7; color: #fff; }
+  .dialog__next { position: absolute; right: 14px; bottom: 8px; color: var(--gold); font-size: 12px; }
+
+  /* ---------- 区块 ---------- */
+  .block { padding: 38px 0 6px; }
+  .block__title { display: flex; align-items: center; gap: 10px; font-family: var(--nm-font-display); font-size: 28px; line-height: 1.2; color: #fff; }
+  .block__title .hud-font { padding: 2px 8px; background: var(--violet); color: #0b1026; font-size: 12px; }
+  .block__sub { margin-top: 4px; font-size: 13px; color: var(--nm-muted); }
+
+  /* ---------- 任务板（可以来问我） ---------- */
+  .quests { display: grid; gap: 14px; margin-top: 16px; }
+  .quest { --c: var(--cyan); }
+  .quest > summary { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; padding: 12px 14px; list-style: none; cursor: pointer; }
+  .quest > summary::-webkit-details-marker { display: none; }
+  .quest__tag { grid-column: 1 / -1; font-size: 11px; color: var(--cyan); }
+  .quest__title { font-family: var(--nm-font-display); font-size: 21px; line-height: 1.3; color: #fff; }
+  .quest__state { align-self: center; padding: 2px 8px; border: 2px solid var(--gold); color: var(--gold); font-size: 11px; }
+  .quest[open] .quest__state { background: var(--gold); color: #0b1026; }
+  .quest__state .done { display: none; }
+  .quest[open] .quest__state .todo { display: none; }
+  .quest[open] .quest__state .done { display: inline; }
+  .quest__body { padding: 0 14px 14px; font-size: 14.5px; line-height: 1.75; color: #dfe3ff; }
+  .quest__body b { color: var(--gold); font-weight: 500; }
+  .reward { display: block; margin-top: 6px; font-size: 12px; color: var(--cyan); }
+
+  /* ---------- 支线：组队 ---------- */
+  .side { margin-top: 16px; padding: 16px; --c: var(--violet); }
+  .side h3 { font-family: var(--nm-font-display); font-size: 22px; color: #fff; }
+  .side p { margin-top: 6px; font-size: 14px; color: #dfe3ff; }
+  .party { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
+  .slot { display: grid; place-items: center; aspect-ratio: 1; border: 2px dashed rgba(238, 240, 255, 0.4); font-size: 12px; color: var(--nm-muted); text-align: center; line-height: 1.3; }
+  .slot.filled { border: 2px solid var(--gold); background: #1e2650; color: var(--gold); }
+  .side .join { margin-top: 12px; font-size: 13px; color: var(--gold); }
+
+  /* ---------- 背包 ---------- */
+  .bag { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+  .item { display: grid; place-items: center; gap: 4px; padding: 12px 6px 8px; border: 0; color: #fff; font-size: 13px; --c: rgba(238, 240, 255, 0.5); }
+  .item svg { width: 44px; height: 44px; image-rendering: pixelated; }
+  .item[aria-pressed="true"] { --c: var(--gold); background: #1e2650; }
+  .item-info { margin-top: 14px; padding: 12px 14px; --c: var(--gold); min-height: 76px; }
+  .item-info h3 { font-family: var(--nm-font-display); font-size: 19px; color: var(--gold); }
+  .item-info p { font-size: 14px; color: #dfe3ff; }
+
+  /* ---------- 隐藏成就 ---------- */
+  .achv { margin-top: 16px; padding: 16px; text-align: center; --c: var(--gold); }
+  .achv__lock { font-size: 13px; color: var(--nm-muted); }
+  .achv button { margin-top: 10px; padding: 10px 18px; border: 0; background: var(--gold); color: #0b1026; font-family: var(--nm-font-display); font-size: 18px; box-shadow: 0 -4px 0 0 #fff2c4 inset, 0 4px 0 0 #b98a1e; }
+  .achv__open { margin-top: 12px; }
+  .achv__open b { display: block; font-family: var(--nm-font-display); font-weight: 400; font-size: 24px; line-height: 1.35; color: #fff; }
+  .achv__open span { font-size: 13px; color: var(--nm-muted); }
+  .end { padding: 40px 0 50px; text-align: center; font-size: 12px; color: var(--nm-muted); }
+</style>
+</head>
+<body>
+<canvas class="nm-particles sky" data-nm-particles="stars" data-nm-color="#eef0ff"></canvas>
+<main class="nm-page">
+
+  <header class="hero" data-nm-id="hero">
+    <div class="hud hud-font"><span>PLAYER 2 · 桌游社</span><span><b>LV.4</b> 大四</span></div>
+    <div class="sheet px">
+      <div class="avatar" aria-hidden="true">
+        <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+          <rect width="16" height="16" fill="#1e2650"/>
+          <rect x="4" y="2" width="8" height="3" fill="#2b1a12"/><rect x="3" y="3" width="1" height="4" fill="#2b1a12"/><rect x="12" y="3" width="1" height="4" fill="#2b1a12"/>
+          <rect x="4" y="5" width="8" height="6" fill="#f2c9a0"/>
+          <rect x="4" y="6" width="3" height="2" fill="#0b1026"/><rect x="9" y="6" width="3" height="2" fill="#0b1026"/><rect x="7" y="6" width="2" height="1" fill="#0b1026"/>
+          <rect x="5" y="6" width="1" height="1" fill="#5ce1e6"/><rect x="10" y="6" width="1" height="1" fill="#5ce1e6"/>
+          <rect x="6" y="9" width="4" height="1" fill="#c96a5a"/>
+          <rect x="3" y="11" width="10" height="5" fill="#8b7bff"/><rect x="7" y="11" width="2" height="2" fill="#f2c9a0"/>
+          <rect x="11" y="12" width="3" height="3" fill="#ffcf5c"/><rect x="12" y="13" width="1" height="1" fill="#0b1026"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="name">周一鸣</h1>
+        <p class="class">职业：社团里的“规则书本人”</p>
+        <p class="meta">软件工程 · 大四 · 桌游社第三年</p>
+      </div>
+    </div>
+    <div class="years hud-font"><span>在社团</span><div class="nm-meter nm-meter--blocks" style="--nm-value: 0.75"></div><span>3 / 4 年</span></div>
+    <div class="dialog px">
+      <p class="dialog__who">【一鸣】</p>
+      <p class="dialog__text" data-nm-typewriter><span>欢迎来到桌游社！想玩什么，我先给你讲规则。</span><span>三十秒讲清《卡坦岛》，不信你来试试。</span><span>新人局每周五晚上，带人就行。</span></p>
+      <span class="dialog__next nm-blink" aria-hidden="true">▼</span>
+    </div>
+  </header>
+
+  <section class="block" data-nm-id="ask-me">
+    <h2 class="block__title nm-reveal"><span class="hud-font">QUEST</span>可以来问我</h2>
+    <p class="block__sub nm-reveal">新人最常来问的三件事。点开任务看我的答案。</p>
+    <div class="quests" data-nm-stagger="100">
+      <details class="quest px nm-reveal">
+        <summary><span class="quest__tag hud-font">MAIN 01</span><span class="quest__title">第一款桌游怎么选</span><span class="quest__state hud-font"><span class="todo">接受</span><span class="done">已接</span></span></summary>
+        <div class="quest__body">先从 <b>2–4 人、半小时能打完</b> 的开始，比如《璀璨宝石》。别一上来就买大盒子，先来社团试玩。<span class="reward">奖励：少踩一个坑</span></div>
+      </details>
+      <details class="quest px nm-reveal">
+        <summary><span class="quest__tag hud-font">MAIN 02</span><span class="quest__title">三十秒学会《卡坦岛》</span><span class="quest__state hud-font"><span class="todo">接受</span><span class="done">已接</span></span></summary>
+        <div class="quest__body">用资源修路，路连成村，村升成城，<b>先到 10 分的人赢</b>。剩下的边玩边讲。<span class="reward">奖励：第一局不会输得太惨</span></div>
+      </details>
+      <details class="quest px nm-reveal">
+        <summary><span class="quest__tag hud-font">MAIN 03</span><span class="quest__title">新人局什么时候开</span><span class="quest__state hud-font"><span class="todo">接受</span><span class="done">已接</span></span></summary>
+        <div class="quest__body"><b>每周五晚上七点</b>，社团活动室。不用带游戏，带人就行。<span class="reward">奖励：一桌新朋友</span></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="block" data-nm-id="side-quest">
+    <h2 class="block__title nm-reveal"><span class="hud-font">SIDE</span>支线：一起做一款桌游</h2>
+    <div class="side px nm-reveal">
+      <h3>想带新人做一款自己的桌游原型</h3>
+      <p>纸笔和剪刀就能开工，从一张规则卡开始。会画画、会算数值、爱吐槽的都欢迎。</p>
+      <div class="party" aria-label="队伍">
+        <div class="slot filled hud-font">一鸣</div><div class="slot">空位</div><div class="slot">空位</div><div class="slot">空位</div>
+      </div>
+      <p class="join">加入队伍 → 点页面下方的“想聊这个”</p>
+    </div>
+  </section>
+
+  <section class="block" data-nm-id="inventory">
+    <h2 class="block__title nm-reveal"><span class="hud-font">BAG</span>背包 · 社团之外</h2>
+    <div class="bag nm-reveal" role="group" aria-label="背包物品">
+      <button class="item px" aria-pressed="true" data-item="tomato">
+        <svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="2" height="1" fill="#3fa66b"/><rect x="2" y="1" width="4" height="1" fill="#3fa66b"/><rect x="1" y="2" width="6" height="5" fill="#e2453c"/><rect x="2" y="7" width="4" height="1" fill="#e2453c"/><rect x="2" y="3" width="1" height="1" fill="#ff9b8f"/></svg>
+        番茄
+      </button>
+      <button class="item px" aria-pressed="false" data-item="shoe">
+        <svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="2" width="3" height="3" fill="#5ce1e6"/><rect x="1" y="5" width="6" height="1" fill="#5ce1e6"/><rect x="4" y="4" width="3" height="1" fill="#5ce1e6"/><rect x="1" y="6" width="7" height="1" fill="#eef0ff"/><rect x="2" y="3" width="1" height="1" fill="#0b1026"/></svg>
+        跑鞋
+      </button>
+      <button class="item px" aria-pressed="false" data-item="dice">
+        <svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="2" height="1" fill="#ffcf5c"/><rect x="2" y="1" width="4" height="1" fill="#ffcf5c"/><rect x="1" y="2" width="6" height="4" fill="#ffcf5c"/><rect x="2" y="6" width="4" height="1" fill="#ffcf5c"/><rect x="3" y="7" width="2" height="1" fill="#ffcf5c"/><rect x="3" y="3" width="2" height="2" fill="#0b1026"/></svg>
+        二十面骰
+      </button>
+    </div>
+    <div class="item-info px" aria-live="polite">
+      <div data-info="tomato"><h3>番茄</h3><p>番茄炒蛋会四种做法，社团聚餐我负责这道。</p></div>
+      <div data-info="shoe" hidden><h3>跑鞋</h3><p>早上绕操场跑几圈，跑完正好赶上食堂的豆浆。</p></div>
+      <div data-info="dice" hidden><h3>二十面骰</h3><p>口袋里永远有一颗，遇到选择困难就扔一下。</p></div>
+    </div>
+  </section>
+
+  <section class="block" data-nm-id="achievement">
+    <h2 class="block__title nm-reveal"><span class="hud-font">???</span>隐藏成就</h2>
+    <div class="achv px nm-reveal">
+      <p class="achv__lock" id="achv-lock">有一个关于我的冷知识，解锁看看</p>
+      <button id="achv-btn" data-nm-confetti="80">解锁成就</button>
+      <div class="achv__open" id="achv-open" hidden>
+        <b>记得仓库里每一盒游戏缺了哪张牌</b>
+        <span>借游戏之前先问我，省得玩到一半发现少了一张羊。</span>
+      </div>
+    </div>
+  </section>
+
+  <p class="end hud-font">SAVE POINT · 周五晚上活动室见</p>
+</main>
+<script>
+  nowme.ready(function () {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.item'));
+    var infos = Array.prototype.slice.call(document.querySelectorAll('[data-info]'));
+    items.forEach(function (item) {
+      item.addEventListener('click', function () {
+        var key = item.getAttribute('data-item');
+        items.forEach(function (other) { other.setAttribute('aria-pressed', other === item ? 'true' : 'false'); });
+        infos.forEach(function (info) { info.hidden = info.getAttribute('data-info') !== key; });
+      });
+    });
+
+    var button = document.getElementById('achv-btn');
+    button.addEventListener('click', function () {
+      document.getElementById('achv-open').hidden = false;
+      document.getElementById('achv-lock').hidden = true;
+      button.hidden = true;
+    });
+  });
+</script>
+</body>
+</html>

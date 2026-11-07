@@ -1,0 +1,59 @@
+{
+  "id": "general",
+  "label": "通用",
+  "goal": "让这个圈子里的人认识你，并愿意来聊",
+  "interviewBudgetSeconds": 120,
+  "assetPrompt": "贴任何关于你的东西：写好的自我介绍、作品链接、几张照片都行。没有就回复“跳过”。",
+  "choiceQuestions": [
+    {
+      "id": "intent",
+      "question": "【重要】这一页最想让大家记住你的哪一面？",
+      "options": ["能力与作品", "兴趣爱好", "性格与有趣的小事", "正在找的人或机会", "说不清，你帮我挑"],
+      "multi": false,
+      "required": true
+    },
+    {
+      "id": "looking-for",
+      "question": "希望通过这页认识什么样的人？（可多选）",
+      "options": ["能一起做事的伙伴", "同好", "前辈 / 能请教的人", "随便聊聊的朋友", "其他：直接写"],
+      "multi": true,
+      "required": false
+    },
+    {
+      "id": "boundaries",
+      "question": "页面上可以出现哪些？（已预选，回复编号增减；联系方式不写进页面，在应用内发布时设置）",
+      "options": ["用昵称，不用真名（默认勾选）", "显示学校", "显示年级和专业", "可以放你本人的照片", "有不想出现的内容：直接写"],
+      "multi": true,
+      "required": false
+    }
+  ],
+  "followUps": [
+    {
+      "direction": "挖一个具体细节：一件具体的事、一个作品、一句你常说的话",
+      "examples": ["最近做成的一件事", "一个拿得出手的作品", "朋友常拿来调侃我的一件事", "跳过"]
+    },
+    {
+      "direction": "为什么来这个圈子、想在这里得到什么",
+      "examples": ["想认识能一起做事的人", "想找同好", "被朋友拉进来的", "跳过"]
+    },
+    {
+      "direction": "最近在忙或在想的一件事",
+      "examples": ["在准备一个项目 / 比赛", "在学一样新东西", "在纠结一个选择", "跳过"]
+    }
+  ],
+  "maxFollowUps": 3,
+  "mustHave": [
+    { "id": "facts", "description": "3 个具体事实（经历、作品、爱好、习惯都行，要具体到名字或场景）" },
+    { "id": "intent", "description": "1 个本页意图：这一页想让别人记住你的哪一面" }
+  ],
+  "hookKinds": [
+    { "kind": "can-help", "pattern": "我能帮你 X" },
+    { "kind": "looking-for", "pattern": "我在找 Y" },
+    { "kind": "talk-about", "pattern": "想和你聊 Z" }
+  ],
+  "defaults": { "showSchool": false, "useNickname": true, "contactPublic": false },
+  "pageGoal": "围绕本页意图组织：首屏说清你是谁、最想被记住的那一面；用 1–2 个具体细节做视觉重点；最后给出别人可以接话的点。",
+  "suggestedBlocks": ["hero", "about", "highlights", "connect"],
+  "visualTone": "按主人的气质和本页意图选择；从 6 个示例里挑最接近的一个做起点，再按这面墙的语境调整。",
+  "examples": ["hackathon-terminal", "hackathon-poster", "interest-vinyl", "interest-film-zine", "club-newbie-sticker", "club-senior-quest"]
+}

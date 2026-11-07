@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "sceneType": "hackathon",
+  "kitVersion": "1",
+  "motionLevel": "calm",
+  "fonts": [
+    { "id": "noto-sans-sc", "weights": [400, 900] },
+    { "id": "inter", "weights": [400, 900] }
+  ],
+  "extraChars": "",
+  "blocks": ["hero", "can-do", "project", "idea", "match", "tabs"],
+  "generator": { "agent": "example", "skillVersion": "0.1.0" }
+}

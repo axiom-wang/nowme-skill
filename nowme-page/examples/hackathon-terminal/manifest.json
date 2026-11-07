@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "sceneType": "hackathon",
+  "kitVersion": "1",
+  "motionLevel": "medium",
+  "fonts": [
+    { "id": "noto-sans-sc", "weights": [400, 700] },
+    { "id": "jetbrains-mono", "weights": [400, 700] }
+  ],
+  "extraChars": "",
+  "blocks": ["hero", "teammate", "projects", "skills", "idea", "ping"],
+  "generator": { "agent": "example", "skillVersion": "0.1.0" }
+}

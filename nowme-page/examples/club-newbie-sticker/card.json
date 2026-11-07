@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "displayName": "小满",
+  "tagline": "话剧社新人，会用五种方言说“你吃了没”",
+  "hooks": [
+    {
+      "id": "first-stage",
+      "kind": "want-to-try",
+      "text": "想第一次上台，哪怕演一棵树",
+      "opener": "小满你好！我也是新人，也想第一次上台，要不要一起报名排练？"
+    },
+    {
+      "id": "write-script",
+      "kind": "want-to-try",
+      "text": "我也想试着写剧本",
+      "opener": "嗨，我也想学写剧本！宿舍夜谈那个点子好有意思，一起写一出吗？"
+    },
+    {
+      "id": "puzzle",
+      "kind": "obsessed",
+      "text": "我在沉迷拼 1000 片的星空拼图",
+      "opener": "你好！我也爱拼图，全是黑色的那块天空我有个小窍门，想听吗？"
+    }
+  ]
+}

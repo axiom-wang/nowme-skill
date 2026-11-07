@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN" class="nm-theme-paper" data-nm-motion="calm">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>栗子的胶片小志 · 凌晨四点的手</title>
+<link rel="stylesheet" href="/_nowme/kit/v1/nowme.css">
+<script src="/_nowme/kit/v1/nowme.js"></script>
+<style>
+  :root {
+    --nm-bg: #ece2cf;
+    --nm-font-body: var(--nm-font-lxgw-wenkai);
+    --nm-font-hand: var(--nm-font-lxgw-wenkai);
+    --nm-font-display: var(--nm-font-noto-serif-sc);
+    --nm-display-weight: 900;
+    --serif-latin: "Instrument Serif", var(--nm-font-lxgw-wenkai);
+    --mono: "JetBrains Mono", var(--nm-font-lxgw-wenkai);
+    --ink: #2a2520;
+    --red: #c8322d;
+    --film: #1c1814;
+  }
+  body { font-size: 16px; line-height: 1.8; color: var(--ink); }
+  .latin { font-family: var(--serif-latin); }
+
+  /* ---------- 首屏 ---------- */
+  .hero { position: relative; padding: 18px 0 30px; }
+  .masthead { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 6px; border-bottom: 1.5px solid var(--ink); font-size: 13px; }
+  .masthead .latin { font-size: 20px; line-height: 1; }
+  .spread { position: relative; display: grid; grid-template-columns: 74px 1fr; gap: 10px; margin-top: 18px; min-height: 360px; }
+  .vtitle { font-family: var(--nm-font-display); font-weight: 900; font-size: 50px; line-height: 1.05; letter-spacing: 0.06em; writing-mode: vertical-rl; }
+  .vtitle em { font-style: normal; color: var(--red); }
+  .main-shot { --nm-tilt: 3deg; --nm-photo-ratio: 4 / 5; justify-self: end; width: 236px; margin-top: 16px; }
+  .main-shot canvas { width: 100%; height: 100%; }
+  .stamp-time { position: absolute; right: -8px; top: 44px; z-index: 3; --nm-tilt: 10deg; font-family: var(--mono); font-size: 16px; background: rgba(236, 226, 207, 0.6); }
+  .intro { margin-top: 18px; font-size: 16px; line-height: 1.75; }
+  .intro b { font-weight: 400; background: linear-gradient(transparent 60%, rgba(200, 50, 45, 0.25) 60%); }
+
+  /* ---------- 区块标题 ---------- */
+  .block { padding: 40px 0 10px; }
+  .block__title { display: flex; align-items: baseline; gap: 10px; }
+  .block__title h2 { font-size: 24px; }
+  .block__title .latin { font-size: 22px; color: var(--red); }
+  .block__sub { margin-top: 2px; font-size: 14px; color: var(--nm-muted); }
+
+  /* ---------- 印样（胶片条） ---------- */
+  .strip { --nm-item-width: 172px; --nm-gap: 0px; margin-top: 16px; padding-block: 0; scroll-padding-inline: 0; background: var(--film); }
+  .frame {
+    position: relative; padding: 22px 8px 10px; background:
+      radial-gradient(circle, #e9dfcc 0 3.4px, transparent 3.8px) 6px 4px / 16px 14px repeat-x,
+      radial-gradient(circle, #e9dfcc 0 3.4px, transparent 3.8px) 6px calc(100% - 4px) / 16px 14px repeat-x,
+      var(--film);
+    padding-bottom: 46px;
+  }
+  .frame canvas { display: block; width: 100%; aspect-ratio: 3 / 2; border-radius: 2px; }
+  .frame__edge { display: flex; justify-content: space-between; margin-top: 3px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; color: #f2a541; }
+  .frame__cap { position: absolute; left: 8px; right: 8px; bottom: 20px; color: #efe6d6; font-size: 14px; line-height: 1.3; }
+
+  /* ---------- 照片背面 ---------- */
+  .story { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 16px; }
+  .flip-shot { width: 78%; margin-inline: auto; }
+  .flip-shot .nm-polaroid { --nm-tilt: -2deg; --nm-photo-ratio: 1; }
+  .flip-shot .nm-flip__back .nm-polaroid { height: 100%; }
+  .photo-back { display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 20px 18px; background: #f7f1e3; color: var(--ink); font-size: 17px; line-height: 1.75; }
+  .photo-back small { margin-top: 10px; font-family: var(--mono); font-size: 11px; color: var(--nm-muted); }
+  .flip-hint { text-align: center; font-size: 13px; color: var(--nm-muted); }
+
+  /* ---------- 冲洗小票 ---------- */
+  .receipt {
+    position: relative; width: 86%; margin: 18px auto 0; padding: 22px 20px 34px; background: #fbf8f1; font-family: var(--mono); font-size: 13px; line-height: 1.9;
+    box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.4); rotate: -1.2deg;
+    -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 10px) no-repeat, conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) bottom / 14px 10px repeat-x;
+    mask: linear-gradient(#000 0 0) top / 100% calc(100% - 10px) no-repeat, conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) bottom / 14px 10px repeat-x;
+  }
+  .receipt h3 { font-family: var(--mono); font-size: 14px; font-weight: 400; text-align: center; letter-spacing: 0.2em; }
+  .receipt .row { display: flex; gap: 8px; }
+  .receipt .row span:first-child { flex: none; width: 4.5em; color: var(--nm-muted); }
+  .receipt hr { margin: 8px 0; border-top: 1.5px dashed var(--ink); }
+  .receipt .total { text-align: center; font-size: 12px; color: var(--nm-muted); }
+
+  /* ---------- 一起拍 ---------- */
+  .together { position: relative; margin-top: 18px; }
+  .together .nm-note { --nm-note-color: #f6d860; --nm-tilt: -1deg; padding: 22px 20px 24px; font-size: 18px; line-height: 1.7; }
+  .together .nm-note p + p { margin-top: 8px; }
+  .together .nm-sticker { position: absolute; right: -4px; top: -14px; --nm-tilt: 8deg; --nm-sticker-bg: var(--red); --nm-sticker-fg: #fff; font-family: var(--nm-font-hand); font-weight: 400; }
+  .end { padding: 46px 0 40px; text-align: center; font-size: 13px; color: var(--nm-muted); }
+  .end .latin { display: block; font-size: 28px; color: var(--ink); }
+</style>
+</head>
+<body class="nm-grain">
+<main class="nm-page">
+
+  <header class="hero" data-nm-id="hero">
+    <div class="masthead"><span class="latin">Chestnut Zine</span><span>栗子的胶片小志 · 第四期</span></div>
+    <div class="spread">
+      <h1 class="vtitle">凌晨<em>四点</em>的手</h1>
+      <figure class="nm-polaroid nm-tape main-shot">
+        <div class="nm-polaroid__photo"><canvas data-photo="tofu" width="472" height="590" aria-hidden="true"></canvas></div>
+        <figcaption class="nm-polaroid__caption">卖豆腐的阿姨在数零钱</figcaption>
+      </figure>
+      <span class="nm-stamp stamp-time">04:12 AM</span>
+    </div>
+    <p class="intro">我是栗子，拍了两年胶片。<b>总在凌晨四点去菜市场，拍摊主的手。</b></p>
+  </header>
+
+  <section class="block" data-nm-id="works">
+    <div class="block__title nm-reveal"><span class="latin">Contact sheet</span><h2>印样</h2></div>
+    <p class="block__sub nm-reveal">一卷里挑出来的六张，左右滑。（示例页里的照片是画出来的示意图）</p>
+    <div class="nm-scroll-x strip" aria-label="胶片印样">
+      <figure class="frame"><canvas data-photo="scale" width="344" height="230" aria-hidden="true"></canvas><div class="frame__edge"><span>KODAK GOLD 200</span><span>12A</span></div><figcaption class="frame__cap">称秤的手</figcaption></figure>
+      <figure class="frame"><canvas data-photo="beans" width="344" height="230" aria-hidden="true"></canvas><div class="frame__edge"><span>KODAK GOLD 200</span><span>13</span></div><figcaption class="frame__cap">剥毛豆的手</figcaption></figure>
+      <figure class="frame"><canvas data-photo="coins" width="344" height="230" aria-hidden="true"></canvas><div class="frame__edge"><span>KODAK GOLD 200</span><span>13A</span></div><figcaption class="frame__cap">数零钱的手</figcaption></figure>
+      <figure class="frame"><canvas data-photo="scallion" width="344" height="230" aria-hidden="true"></canvas><div class="frame__edge"><span>KODAK GOLD 200</span><span>14</span></div><figcaption class="frame__cap">捆葱的手</figcaption></figure>
+      <figure class="frame"><canvas data-photo="knife" width="344" height="230" aria-hidden="true"></canvas><div class="frame__edge"><span>KODAK GOLD 200</span><span>14A</span></div><figcaption class="frame__cap">擦刀的手</figcaption></figure>
+      <figure class="frame"><canvas data-photo="bag" width="344" height="230" aria-hidden="true"></canvas><div class="frame__edge"><span>KODAK GOLD 200</span><span>15</span></div><figcaption class="frame__cap">递塑料袋的手</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="block" data-nm-id="story">
+    <div class="block__title nm-reveal"><span class="latin">Why hands</span><h2>为什么是手</h2></div>
+    <div class="story">
+      <div class="flip-shot nm-flip" data-nm-flip aria-label="翻到照片背面">
+        <div class="nm-flip__inner">
+          <figure class="nm-flip__front nm-polaroid">
+            <div class="nm-polaroid__photo"><canvas data-photo="hands" width="460" height="460" aria-hidden="true"></canvas></div>
+            <figcaption class="nm-polaroid__caption">点一下，翻到背面</figcaption>
+          </figure>
+          <div class="nm-flip__back nm-polaroid">
+            <div class="photo-back">脸会躲镜头，手不会。<br>凌晨四点，所有人的手都在忙。<small>— 写在第一卷的背面</small></div>
+          </div>
+        </div>
+      </div>
+      <p class="flip-hint">照片背面是我当时写的字</p>
+    </div>
+  </section>
+
+  <section class="block" data-nm-id="gear">
+    <div class="block__title nm-reveal"><span class="latin">Receipt</span><h2>我的一卷是怎么来的</h2></div>
+    <div class="receipt nm-reveal">
+      <h3>FILM LAB</h3>
+      <hr>
+      <div class="row"><span>相机</span><span>Olympus μ-II（二手）</span></div>
+      <div class="row"><span>胶卷</span><span>柯达 Gold 200</span></div>
+      <div class="row"><span>冲扫</span><span>学校后街那家</span></div>
+      <div class="row"><span>起床</span><span>03:40</span></div>
+      <hr>
+      <p class="total">谢谢光临 · 下一卷见</p>
+    </div>
+  </section>
+
+  <section class="block" data-nm-id="together">
+    <div class="block__title nm-reveal"><span class="latin">Together</span><h2>想找人一起</h2></div>
+    <div class="together nm-reveal">
+      <div class="nm-note">
+        <p>想找人一起早起，去菜市场拍照。</p>
+        <p>也想交换靠谱的冲洗店。</p>
+      </div>
+      <span class="nm-sticker">新手也行</span>
+    </div>
+    <p class="end"><span class="latin">— see you at 4 a.m.</span>栗子</p>
+  </section>
+
+</main>
+<script>
+  // Paint placeholder "photos" once (no animation loop). nowme.rng(seed) keeps every render identical, so the cover is stable.
+  nowme.ready(function (nm) {
+    var palettes = {
+      tofu: ['#f2c58a', '#d9895b', '#5b3a2e'], scale: ['#f6d29b', '#c76b4a', '#3b2b25'], beans: ['#d8e0a8', '#7d9a52', '#2f3a24'],
+      coins: ['#f0d7a6', '#b9874f', '#4a3426'], scallion: ['#e8eec7', '#89a66a', '#2d3b2a'], knife: ['#cfd6dc', '#7b8a96', '#2a2f36'],
+      bag: ['#f3c7b5', '#d0645a', '#3d2a2c'], hands: ['#f4cfa0', '#d88a5c', '#4a2f26']
+    };
+    Array.prototype.forEach.call(document.querySelectorAll('canvas[data-photo]'), function (canvas) {
+      var key = canvas.getAttribute('data-photo');
+      var colors = palettes[key] || palettes.tofu;
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      var w = canvas.width;
+      var h = canvas.height;
+      var rand = nm.rng(key);
+      var sky = ctx.createLinearGradient(0, 0, 0, h);
+      sky.addColorStop(0, colors[0]);
+      sky.addColorStop(0.55, colors[1]);
+      sky.addColorStop(1, colors[2]);
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, w, h);
+      for (var i = 0; i < 26; i += 1) {
+        var x = rand() * w;
+        var y = rand() * h * 0.6;
+        var r = 6 + rand() * w * 0.08;
+        var glow = ctx.createRadialGradient(x, y, 0, x, y, r);
+        glow.addColorStop(0, 'rgba(255, 244, 214, ' + (0.25 + rand() * 0.45) + ')');
+        glow.addColorStop(1, 'rgba(255, 244, 214, 0)');
+        ctx.fillStyle = glow;
+        ctx.fillRect(x - r, y - r, r * 2, r * 2);
+      }
+      ctx.fillStyle = 'rgba(30, 20, 16, 0.55)';
+      ctx.fillRect(0, h * 0.68, w, h * 0.32);
+      ctx.fillStyle = colors[0];
+      ctx.globalAlpha = 0.9;
+      ctx.beginPath();
+      ctx.ellipse(w * (0.42 + rand() * 0.16), h * 0.7, w * 0.17, h * 0.1, -0.35 + rand() * 0.7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(w * (0.58 + rand() * 0.1), h * 0.74, w * 0.12, h * 0.08, 0.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      var leak = ctx.createLinearGradient(w, 0, w * 0.6, h * 0.4);
+      leak.addColorStop(0, 'rgba(255, 90, 40, 0.55)');
+      leak.addColorStop(1, 'rgba(255, 90, 40, 0)');
+      ctx.fillStyle = leak;
+      ctx.fillRect(0, 0, w, h);
+      var image = ctx.getImageData(0, 0, w, h);
+      for (var p = 0; p < image.data.length; p += 4) {
+        var n = (rand() - 0.5) * 34;
+        image.data[p] += n;
+        image.data[p + 1] += n;
+        image.data[p + 2] += n;
+      }
+      ctx.putImageData(image, 0, 0);
+    });
+  });
+</script>
+</body>
+</html>

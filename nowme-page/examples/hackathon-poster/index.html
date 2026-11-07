@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh-CN" class="nm-theme-mono" data-nm-motion="calm">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>苏晴 · 组队启事：找一位后端</title>
+<link rel="stylesheet" href="/_nowme/kit/v1/nowme.css">
+<script src="/_nowme/kit/v1/nowme.js"></script>
+<style>
+  :root {
+    --nm-bg: #f5f3ef;
+    --nm-surface: #f5f3ef;
+    --nm-font-body: "Inter", var(--nm-font-noto-sans-sc);
+    --nm-font-display: "Inter", var(--nm-font-noto-sans-sc);
+    --nm-display-weight: 900;
+    --ink: #0a0a0a;
+    --orange: #ff3b00;
+    --blue: #0047ff;
+    --rule: 2px solid var(--ink);
+  }
+  body { font-size: 15px; line-height: 1.6; }
+  .nm-page { padding-inline: 18px; }
+
+  /* ---------- 首屏：招募海报 ---------- */
+  .hero { position: relative; overflow: hidden; padding-top: 14px; padding-bottom: 28px; }
+  .sun { position: absolute; top: 46px; right: -70px; width: 210px; height: 210px; border-radius: 50%; background: var(--orange); }
+  .sun-label { position: absolute; z-index: 1; top: 92px; right: 0; width: 124px; color: #fff; font-size: 12px; font-weight: 400; line-height: 1.35; }
+  .sun-label b { display: block; font-size: 26px; font-weight: 900; line-height: 1.1; letter-spacing: 0.02em; }
+  .sun-label span { display: block; margin-top: 6px; padding-top: 6px; border-top: 2px solid #fff; }
+  .meta { position: relative; display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-top: var(--rule); border-bottom: 1px solid var(--ink); font-size: 11px; font-weight: 400; letter-spacing: 0.04em; }
+  .meta b { font-weight: 900; }
+  .wanted { position: relative; display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 12px; font-weight: 900; letter-spacing: 0.3em; }
+  .wanted::after { content: ""; flex: 1; height: 2px; background: var(--ink); }
+  .headline { position: relative; margin-top: 10px; font-weight: 900; line-height: 0.92; letter-spacing: -0.02em; }
+  .headline .l1 { display: block; font-size: 64px; }
+  .headline .l2 { display: block; margin-top: 2px; font-size: 150px; letter-spacing: -0.06em; }
+  .headline .dot { color: var(--orange); }
+  .plus { position: relative; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; padding: 6px 12px 6px 8px; background: var(--ink); color: #fff; font-size: 20px; font-weight: 900; line-height: 1.2; }
+  .plus i { font-style: normal; color: var(--orange); font-size: 24px; line-height: 1; }
+  .who { position: relative; margin-top: 18px; border-top: var(--rule); }
+  .who div { display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--ink); font-size: 14px; line-height: 1.45; }
+  .who dt { font-size: 11px; font-weight: 900; letter-spacing: 0.08em; padding-top: 2px; }
+  .who dd b { font-weight: 900; }
+
+  /* ---------- 编号区块 ---------- */
+  .part { padding: 44px 0 8px; }
+  .part__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; padding-bottom: 8px; border-bottom: var(--rule); }
+  .part__no { font-size: 76px; font-weight: 900; line-height: 0.8; letter-spacing: -0.04em; }
+  .part__title { font-size: 22px; font-weight: 900; text-align: right; line-height: 1.2; }
+  .part__title small { display: block; font-size: 11px; font-weight: 400; letter-spacing: 0.2em; }
+
+  .cando { margin: 0; padding: 0; list-style: none; }
+  .cando li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--ink); font-size: 18px; font-weight: 900; line-height: 1.35; }
+  .cando li span { font-size: 13px; font-weight: 900; color: var(--orange); padding-top: 4px; }
+  .cando li p { margin-top: 4px; font-size: 13px; font-weight: 400; line-height: 1.5; }
+
+  .case { margin-top: 14px; font-size: 14px; }
+  .case h3 { font-size: 20px; font-weight: 900; line-height: 1.3; }
+  .case h3 small { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; }
+  .figures { display: grid; grid-template-columns: 1fr 1fr; margin-top: 14px; border-top: var(--rule); border-bottom: var(--rule); }
+  .figures div { padding: 10px 0 12px; }
+  .figures div + div { padding-left: 12px; border-left: 1px solid var(--ink); }
+  .figures strong { display: block; font-size: 46px; font-weight: 900; line-height: 1; letter-spacing: -0.03em; }
+  .figures strong.o { color: var(--orange); }
+  .steps { --nm-item-width: 76%; margin-top: 18px; }
+  .step { border: var(--rule); background: #fff; }
+  .step__cap { display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: var(--rule); font-size: 12px; font-weight: 900; }
+  .step__cap span:last-child { color: var(--orange); }
+  .step svg { display: block; width: 100%; height: auto; }
+  .step p { padding: 8px 10px 10px; font-size: 13px; line-height: 1.5; border-top: 1px solid var(--ink); }
+  .note { margin-top: 8px; font-size: 11px; color: var(--nm-muted); }
+
+  .idea-big { margin-top: 18px; font-size: 42px; font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; }
+  .idea-big .arrow { color: var(--orange); }
+  .idea-text { margin-top: 14px; font-size: 15px; line-height: 1.7; }
+  .idea-text b { font-weight: 900; background: var(--ink); color: #fff; padding: 0 4px; }
+
+  /* ---------- 匹配小测 ---------- */
+  .match { margin-top: 16px; }
+  .match .nm-chips { gap: 8px; }
+  .match .nm-chip { padding: 8px 14px; border: var(--rule); border-radius: 0; font-size: 14px; font-weight: 900; background: #fff; }
+  .match .nm-chip[aria-pressed="true"] { background: var(--orange); color: #fff; border-color: var(--ink); }
+  .meter-wrap { margin-top: 18px; padding: 14px; background: var(--ink); color: #fff; }
+  .meter-wrap .nm-meter { --nm-meter-height: 14px; --nm-surface-2: #333; --nm-meter-color: var(--orange); }
+  .meter-wrap .nm-meter::before { transition: width var(--nm-dur-3) var(--nm-ease-out); }
+  .result { margin-top: 10px; font-size: 20px; font-weight: 900; line-height: 1.35; }
+  .result small { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; opacity: 0.75; }
+
+  /* ---------- 撕条 ---------- */
+  .tabs-intro { margin-top: 16px; font-size: 14px; }
+  .tabs { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 14px; border-top: 2px dashed var(--ink); }
+  .tab {
+    display: flex; justify-content: center; padding: 12px 0 14px; border: 0; border-right: 2px dashed var(--ink); background: #fff;
+    font-size: 13px; font-weight: 900; line-height: 1.15; color: var(--ink);
+    transform-origin: 50% 0; transition: rotate 0.5s var(--nm-ease-out), translate 0.6s ease-in, opacity 0.6s ease-in;
+  }
+  .tab:first-child { border-left: 2px dashed var(--ink); }
+  .tab .nm-vertical { letter-spacing: 0.08em; }
+  .tab:nth-child(odd) { background: var(--orange); color: #fff; }
+  .tab.is-torn { rotate: 14deg; translate: 0 60px; opacity: 0; pointer-events: none; }
+  .tab:nth-child(even).is-torn { rotate: -12deg; }
+  .torn-count { margin-top: 10px; min-height: 1.6em; font-size: 13px; }
+  .end { padding: 40px 0 48px; font-size: 11px; letter-spacing: 0.06em; border-bottom: var(--rule); margin-bottom: 24px; }
+</style>
+</head>
+<body>
+<main class="nm-page">
+
+  <header class="hero" data-nm-id="hero">
+    <div class="sun" aria-hidden="true"></div>
+    <p class="sun-label"><b>我是苏晴</b><span>产品 + 交互设计<br>工业设计 · 大二</span></p>
+    <div class="meta"><span><b>组队启事</b> No.07</span><span>2026 秋季校园 AI 黑客松</span></div>
+    <p class="wanted">WANTED</p>
+    <h1 class="headline"><span class="l1">找一位</span><span class="l2">后端<span class="dot">。</span></span></h1>
+    <p class="plus"><i>+</i>一位懂 AI 的开发</p>
+    <dl class="who">
+      <div><dt>我是</dt><dd><b>苏晴</b> · 产品 + 交互设计</dd></div>
+      <div><dt>学校</dt><dd>南湖大学 · 工业设计 · 大二</dd></div>
+      <div><dt>能做</dt><dd>Figma 原型 / 用户访谈 / 路演</dd></div>
+    </dl>
+  </header>
+
+  <section class="part nm-reveal" data-nm-id="can-do">
+    <div class="part__head"><span class="part__no">01</span><h2 class="part__title"><small>I CAN</small>我能做的</h2></div>
+    <ol class="cando">
+      <li><span>A</span><div>把模糊的点子画成能点的原型<p>用 Figma 做可交互原型，路演前就能拿给评委点。</p></div></li>
+      <li><span>B</span><div>做用户访谈，搞清楚到底给谁用<p>先问清楚问题，再决定做什么功能。</p></div></li>
+      <li><span>C</span><div>写路演稿、做 PPT、上台讲<p>最后五分钟交给我。</p></div></li>
+    </ol>
+  </section>
+
+  <section class="part nm-reveal" data-nm-id="project">
+    <div class="part__head"><span class="part__no">02</span><h2 class="part__title"><small>DONE</small>做过的</h2></div>
+    <div class="case">
+      <h3>图书馆座位预约 · 交互改版<small>课程项目 · 我负责访谈、原型和最后的展示</small></h3>
+      <div class="figures">
+        <div><strong>12</strong>位同学的访谈</div>
+        <div><strong class="o">最高分</strong>课程原型评分</div>
+      </div>
+      <div class="nm-scroll-x steps" aria-label="项目过程">
+        <figure class="step">
+          <figcaption class="step__cap"><span>STEP 1</span><span>访谈</span></figcaption>
+          <svg viewBox="0 0 240 150" aria-hidden="true">
+            <rect width="240" height="150" fill="#fff"/>
+            <g fill="none" stroke="#0a0a0a" stroke-width="2">
+              <rect x="22" y="26" width="120" height="34" rx="17"/><rect x="98" y="72" width="120" height="34" rx="17"/>
+              <circle cx="40" cy="120" r="12"/><circle cx="200" cy="40" r="12"/>
+            </g>
+            <rect x="98" y="72" width="120" height="34" rx="17" fill="#ff3b00"/>
+            <g fill="#0a0a0a"><rect x="36" y="40" width="70" height="5"/><rect x="112" y="86" width="80" height="5" fill="#fff"/></g>
+          </svg>
+          <p>“抢不到座位”其实是“不知道几点有空位”。</p>
+        </figure>
+        <figure class="step">
+          <figcaption class="step__cap"><span>STEP 2</span><span>原型</span></figcaption>
+          <svg viewBox="0 0 240 150" aria-hidden="true">
+            <rect width="240" height="150" fill="#fff"/>
+            <rect x="82" y="10" width="76" height="132" rx="10" fill="none" stroke="#0a0a0a" stroke-width="2"/>
+            <g fill="#0a0a0a">
+              <rect x="92" y="26" width="40" height="5"/>
+              <rect x="92" y="42" width="12" height="12"/><rect x="108" y="42" width="12" height="12"/><rect x="124" y="42" width="12" height="12" fill="#ff3b00"/><rect x="140" y="42" width="8" height="12"/>
+              <rect x="92" y="58" width="12" height="12" fill="#ff3b00"/><rect x="108" y="58" width="12" height="12"/><rect x="124" y="58" width="12" height="12"/><rect x="140" y="58" width="8" height="12" fill="#ff3b00"/>
+              <rect x="92" y="74" width="12" height="12"/><rect x="108" y="74" width="12" height="12" fill="#ff3b00"/><rect x="124" y="74" width="12" height="12"/><rect x="140" y="74" width="8" height="12"/>
+              <rect x="92" y="98" width="56" height="16" rx="8"/>
+            </g>
+            <path d="M40 60 L76 60" stroke="#0a0a0a" stroke-width="2"/><circle cx="34" cy="60" r="6" fill="#ff3b00"/>
+            <path d="M164 106 L200 106" stroke="#0a0a0a" stroke-width="2"/><circle cx="206" cy="106" r="6" fill="#0a0a0a"/>
+          </svg>
+          <p>把“预约”改成“看空位热力图 + 提醒”。</p>
+        </figure>
+        <figure class="step">
+          <figcaption class="step__cap"><span>STEP 3</span><span>测试</span></figcaption>
+          <svg viewBox="0 0 240 150" aria-hidden="true">
+            <rect width="240" height="150" fill="#fff"/>
+            <path d="M20 130 H220 M20 130 V20" stroke="#0a0a0a" stroke-width="2"/>
+            <g fill="#0a0a0a"><rect x="40" y="70" width="26" height="60"/><rect x="100" y="50" width="26" height="80"/></g>
+            <rect x="160" y="28" width="26" height="102" fill="#ff3b00"/>
+          </svg>
+          <p>改了三版，每版都拿给同学点一遍。</p>
+        </figure>
+      </div>
+      <p class="note">原型图为示意。左右滑动看过程。</p>
+    </div>
+  </section>
+
+  <section class="part nm-reveal" data-nm-id="idea">
+    <div class="part__head"><span class="part__no">03</span><h2 class="part__title"><small>NEXT</small>想做的</h2></div>
+    <p class="idea-big">上课录音<span class="arrow"> → </span>复习卡片</p>
+    <p class="idea-text">期末复习时翻录音太痛苦了。想做一个把上课录音整理成复习卡片的工具。我来画交互、跑访谈，缺一位能把它做出来的<b>后端</b>和<b>懂 AI 的开发</b>。</p>
+  </section>
+
+  <section class="part nm-reveal" data-nm-id="match">
+    <div class="part__head"><span class="part__no">04</span><h2 class="part__title"><small>YOU?</small>你是我要找的人吗</h2></div>
+    <div class="match">
+      <p class="tabs-intro">点一点你会的：</p>
+      <div class="nm-chips" role="group" aria-label="你会的技能">
+        <button class="nm-chip" aria-pressed="false" data-skill="key">能写后端 / 接口</button>
+        <button class="nm-chip" aria-pressed="false" data-skill="key">用过大模型 API</button>
+        <button class="nm-chip" aria-pressed="false" data-skill="other">会写前端</button>
+        <button class="nm-chip" aria-pressed="false" data-skill="other">做过数据处理</button>
+        <button class="nm-chip" aria-pressed="false" data-skill="other">对教育类产品有兴趣</button>
+      </div>
+      <div class="meter-wrap" aria-live="polite">
+        <div class="nm-meter" id="match-meter" style="--nm-value: 0"></div>
+        <div class="result" id="match-result">
+          <p data-state="idle">先点点看你会哪些<small>不会也没关系，往下看</small></p>
+          <p data-state="yes" hidden>就是你！我缺的正是这块<small>点下方的“想聊这个”找我</small></p>
+          <p data-state="maybe" hidden>也欢迎来聊<small>说不定有别的分工方式</small></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="part nm-reveal" data-nm-id="tabs">
+    <div class="part__head"><span class="part__no">05</span><h2 class="part__title"><small>TAKE ONE</small>撕一张走</h2></div>
+    <p class="tabs-intro">感兴趣就撕一张，然后点页面下方的“想聊这个”。</p>
+    <div class="tabs" id="tabs">
+      <button class="tab"><span class="nm-vertical">后端来聊</span></button>
+      <button class="tab"><span class="nm-vertical">AI 来聊</span></button>
+      <button class="tab"><span class="nm-vertical">前端来聊</span></button>
+      <button class="tab"><span class="nm-vertical">一起熬夜</span></button>
+      <button class="tab"><span class="nm-vertical">看看原型</span></button>
+      <button class="tab"><span class="nm-vertical">先交朋友</span></button>
+    </div>
+    <p class="torn-count" id="torn-count" aria-live="polite"><span data-torn="0">还没人撕过</span><span data-torn="1" hidden>你撕走了一张，记得点“想聊这个”</span></p>
+    <p class="end">苏晴 · 组队启事 No.07 · 截止到组队结束</p>
+  </section>
+
+</main>
+<script>
+  nowme.ready(function () {
+    var chips = Array.prototype.slice.call(document.querySelectorAll('[data-skill]'));
+    var meter = document.getElementById('match-meter');
+    var states = Array.prototype.slice.call(document.querySelectorAll('#match-result [data-state]'));
+
+    function update() {
+      var pressed = chips.filter(function (chip) { return chip.getAttribute('aria-pressed') === 'true'; });
+      var hasKey = pressed.some(function (chip) { return chip.getAttribute('data-skill') === 'key'; });
+      var state = pressed.length === 0 ? 'idle' : hasKey ? 'yes' : 'maybe';
+      meter.style.setProperty('--nm-value', String(pressed.length / chips.length));
+      states.forEach(function (item) { item.hidden = item.getAttribute('data-state') !== state; });
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chip.setAttribute('aria-pressed', chip.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+        update();
+      });
+    });
+
+    var torn = document.querySelectorAll('#torn-count [data-torn]');
+    Array.prototype.forEach.call(document.querySelectorAll('#tabs .tab'), function (tab) {
+      tab.addEventListener('click', function () {
+        tab.classList.add('is-torn');
+        tab.setAttribute('aria-hidden', 'true');
+        torn[0].hidden = true;
+        torn[1].hidden = false;
+      });
+    });
+  });
+</script>
+</body>
+</html>

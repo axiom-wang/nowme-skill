@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN" class="nm-theme-sunset" data-nm-motion="medium">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>阿岚的唱片架 · 只淘有前主人痕迹的二手黑胶</title>
+<link rel="stylesheet" href="/_nowme/kit/v1/nowme.css">
+<script src="/_nowme/kit/v1/nowme.js"></script>
+<style>
+  :root {
+    --nm-font-body: var(--nm-font-noto-serif-sc);
+    --nm-font-display: var(--nm-font-noto-serif-sc);
+    --nm-display-weight: 900;
+    --latin: "Instrument Serif", var(--nm-font-noto-serif-sc);
+    --brown: #3a1f14;
+    --orange: #e2531f;
+    --mustard: #f4b33d;
+    --teal: #2f6d6a;
+    --cream: #fbe9d0;
+    --label: #e2531f;
+  }
+  body { font-size: 15.5px; line-height: 1.75; }
+  .latin { font-family: var(--latin); font-weight: 400; }
+
+  /* ---------- 七十年代条纹 ---------- */
+  .stripes { display: grid; gap: 4px; margin-inline: calc(var(--nm-gutter) * -1); }
+  .stripes i { display: block; height: 7px; }
+  .stripes i:nth-child(1) { background: var(--brown); }
+  .stripes i:nth-child(2) { background: var(--orange); }
+  .stripes i:nth-child(3) { background: var(--mustard); }
+  .stripes i:nth-child(4) { background: var(--teal); }
+
+  /* ---------- 首屏：正在播放 ---------- */
+  .hero { padding: 16px 0 34px; }
+  .now { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 12px; letter-spacing: 0.16em; color: var(--nm-muted); }
+  .now .latin { font-size: 15px; letter-spacing: 0.08em; }
+  .deck { position: relative; height: 262px; margin-top: 4px; }
+  .record {
+    position: absolute; left: 50%; top: 6px; width: 250px; height: 250px; margin-left: -140px; border-radius: 50%;
+    background:
+      radial-gradient(circle, transparent 0 31%, rgba(255, 255, 255, 0.07) 31.5%, transparent 32.5%),
+      conic-gradient(from 20deg, rgba(255, 255, 255, 0.16), transparent 12%, transparent 45%, rgba(255, 255, 255, 0.1) 52%, transparent 62%),
+      repeating-radial-gradient(circle, #141210 0 1.6px, #24201c 1.6px 2.6px);
+    box-shadow: 0 18px 36px -12px rgba(58, 31, 20, 0.55), 0 0 0 6px #191512;
+  }
+  .record.nm-spin { --nm-spin-duration: 5s; }
+  .record__label {
+    position: absolute; inset: 33%; display: grid; place-items: center; border-radius: 50%; background: var(--label);
+    color: var(--cream); text-align: center; transition: background-color var(--nm-dur-3) var(--nm-ease-out);
+  }
+  .record__label::after { content: ""; position: absolute; width: 9px; height: 9px; border-radius: 50%; background: #191512; }
+  .record__label span { font-family: var(--latin); font-size: 12px; line-height: 1; letter-spacing: 0.06em; transform: translateY(-20px); }
+  .arm { position: absolute; right: 0; top: -6px; width: 108px; height: 207px; pointer-events: none; }
+  .track { text-align: center; }
+  .track__title { font-family: var(--latin); font-size: 46px; line-height: 1; letter-spacing: 0.01em; }
+  .track__meta { margin-top: 4px; font-size: 13px; color: var(--nm-muted); }
+  .track__meta b { color: var(--orange); font-weight: 400; }
+  .angle { margin-top: 10px; font-size: 24px; font-weight: 900; line-height: 1.4; text-align: center; }
+  .angle em { font-style: normal; color: var(--orange); }
+
+  /* ---------- 区块 ---------- */
+  .block { padding: 44px 0 10px; }
+  .block__kicker { display: flex; align-items: baseline; gap: 10px; }
+  .block__kicker .latin { font-size: 30px; line-height: 1; color: var(--teal); }
+  .block h2 { font-size: 24px; line-height: 1.3; }
+  .block__sub { margin-top: 4px; font-size: 13px; color: var(--nm-muted); }
+
+  /* ---------- 唱片箱 ---------- */
+  .crate { --nm-item-width: 150px; --nm-gap: 14px; margin-top: 16px; padding-top: 10px; padding-bottom: 22px; }
+  .sleeve {
+    position: relative; aspect-ratio: 1; padding: 0; border: 0; overflow: hidden; text-align: left;
+    box-shadow: 0 10px 18px -10px rgba(58, 31, 20, 0.6); transition: translate var(--nm-dur-2) var(--nm-ease-out), box-shadow var(--nm-dur-2);
+  }
+  .sleeve[aria-pressed="true"] { translate: 0 -10px; box-shadow: 0 0 0 3px var(--brown), 0 16px 22px -10px rgba(58, 31, 20, 0.6); }
+  .sleeve svg { display: block; width: 100%; height: 100%; }
+  .sleeve__name { position: absolute; left: 10px; right: 54px; top: 8px; font-family: var(--latin); font-size: 17px; line-height: 1.05; }
+  .sleeve__name small { display: block; font-family: var(--nm-font-noto-serif-sc); font-size: 10px; opacity: 0.85; }
+  .playing-tag { position: absolute; top: 10px; right: 8px; padding: 1px 7px; border-radius: 999px; background: var(--cream); color: var(--brown); font-size: 10px; opacity: 0; transition: opacity var(--nm-dur-2); }
+  .sleeve[aria-pressed="true"] .playing-tag { opacity: 1; }
+
+  .trace { position: relative; margin-top: 6px; padding: 18px 18px 20px; background: #fff6e9; border: 1px solid rgba(58, 31, 20, 0.18); box-shadow: 0 1px 0 rgba(58, 31, 20, 0.08), 6px 6px 0 var(--mustard); }
+  .trace__label { font-size: 11px; letter-spacing: 0.2em; color: var(--orange); }
+  .trace__text { margin-top: 6px; font-size: 19px; font-weight: 900; line-height: 1.5; }
+  .trace__where { margin-top: 8px; font-size: 13px; color: var(--nm-muted); }
+  .trace__mine { margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(58, 31, 20, 0.3); font-size: 14px; }
+
+  /* ---------- 入坑指南 ---------- */
+  .guide { display: grid; gap: 14px; margin-top: 18px; }
+  .guide .nm-ticket { --nm-ticket-stub: 74px; background: #fff6e9; }
+  .guide .nm-ticket__main b { display: block; font-size: 17px; font-weight: 900; line-height: 1.4; }
+  .guide .nm-ticket__main p { margin-top: 4px; font-size: 13px; line-height: 1.6; color: var(--nm-muted); }
+  .guide .nm-ticket__stub { font-family: var(--latin); font-size: 34px; line-height: 1; color: var(--orange); }
+  .guide .nm-ticket:nth-child(2) .nm-ticket__stub { color: var(--teal); }
+  .guide .nm-ticket:nth-child(3) .nm-ticket__stub { color: var(--brown); }
+
+  /* ---------- 一起去 ---------- */
+  .invite { margin-top: 18px; --nm-ticket-stub: 92px; background: var(--teal); color: var(--cream); }
+  .invite .nm-ticket__main { padding: 20px 18px; }
+  .invite .latin { font-size: 15px; letter-spacing: 0.2em; opacity: 0.8; }
+  .invite h3 { margin-top: 6px; font-size: 26px; line-height: 1.3; }
+  .invite p { margin-top: 8px; font-size: 14px; line-height: 1.65; opacity: 0.92; }
+  .invite .nm-ticket__stub { border-left-color: rgba(251, 233, 208, 0.5); }
+  .invite .nm-ticket__stub span { writing-mode: vertical-rl; font-family: var(--latin); font-size: 20px; letter-spacing: 0.2em; }
+
+  /* ---------- 关于 ---------- */
+  .about { padding: 44px 0 20px; }
+  .about p { font-size: 15px; line-height: 1.85; }
+  .about .nm-quote { margin-top: 16px; font-weight: 900; font-size: 19px; }
+  .band { margin: 34px calc(var(--nm-gutter) * -1) 0; padding: 12px 0; background: var(--brown); color: var(--cream); }
+  .band .nm-marquee__track { font-family: var(--latin); font-size: 24px; line-height: 1.2; }
+  .band .nm-marquee__track span::after { content: " \2022"; color: var(--mustard); }
+  .end { padding: 18px 0 40px; font-size: 12px; color: var(--nm-muted); text-align: center; }
+</style>
+</head>
+<body class="nm-grain">
+<main class="nm-page">
+
+  <header class="hero" data-nm-id="hero">
+    <div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <p class="now"><span class="latin">NOW PLAYING</span><span>阿岚的唱片架</span></p>
+    <div class="deck" aria-hidden="true">
+      <div class="record nm-spin" id="record"><div class="record__label" id="record-label"><span id="record-label-text">SIDE A</span></div></div>
+      <svg class="arm" viewBox="0 0 120 230">
+        <circle cx="92" cy="26" r="20" fill="#d9c3a3" stroke="#3a1f14" stroke-width="3"/>
+        <circle cx="92" cy="26" r="7" fill="#3a1f14"/>
+        <path d="M92 26 L98 150 L70 196" fill="none" stroke="#3a1f14" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="56" y="188" width="26" height="34" rx="4" transform="rotate(32 69 205)" fill="#3a1f14"/>
+      </svg>
+    </div>
+    <div class="track" aria-live="polite">
+      <p class="track__title" id="now-title">Sunshower</p>
+      <p class="track__meta" id="now-meta">大贯妙子 · 1977 · <b>雨天必放</b></p>
+    </div>
+    <h1 class="angle">只淘<em>有前主人痕迹</em>的<br>二手黑胶</h1>
+  </header>
+
+  <section class="block" data-nm-id="collection">
+    <div class="block__kicker nm-reveal"><span class="latin">Crate</span><h2>唱片箱</h2></div>
+    <p class="block__sub nm-reveal">点一张，放到唱机上，看看前主人留下了什么。</p>
+    <div class="nm-scroll-x crate" role="group" aria-label="唱片箱">
+      <button class="sleeve" aria-pressed="true" data-album="sunshower" data-label="#e2531f" data-title="Sunshower" data-meta="大贯妙子 · 1977 · 雨天必放">
+        <svg viewBox="0 0 150 150" aria-hidden="true">
+          <rect width="150" height="150" fill="#f4b33d"/>
+          <g fill="none" stroke-width="10"><circle cx="75" cy="150" r="96" stroke="#e2531f"/><circle cx="75" cy="150" r="76" stroke="#3a1f14"/><circle cx="75" cy="150" r="56" stroke="#2f6d6a"/></g>
+          <circle cx="75" cy="150" r="34" fill="#fbe9d0"/>
+        </svg>
+        <span class="sleeve__name" style="color:#3a1f14">Sunshower<small>大贯妙子</small></span><span class="playing-tag">播放中</span>
+      </button>
+      <button class="sleeve" aria-pressed="false" data-album="for-you" data-label="#2f6d6a" data-title="For You" data-meta="山下达郎 · 1982 · 夏天第一张">
+        <svg viewBox="0 0 150 150" aria-hidden="true">
+          <rect width="150" height="150" fill="#2f6d6a"/>
+          <rect y="96" width="150" height="54" fill="#f4b33d"/>
+          <rect y="96" width="150" height="6" fill="#e2531f"/>
+          <circle cx="112" cy="46" r="20" fill="#fbe9d0"/>
+          <path transform="translate(30 10)" d="M28 86 L34 40 M34 40 C20 34 14 44 10 50 M34 40 C46 30 56 36 62 42 M34 40 C30 26 40 20 48 18" fill="none" stroke="#3a1f14" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="sleeve__name" style="color:#fbe9d0">For You<small>山下达郎</small></span><span class="playing-tag">播放中</span>
+      </button>
+      <button class="sleeve" aria-pressed="false" data-album="zhihu" data-label="#3a1f14" data-title="之乎者也" data-meta="罗大佑 · 1982 · 第一张，旧书店角落">
+        <svg viewBox="0 0 150 150" aria-hidden="true">
+          <rect width="150" height="150" fill="#fbe9d0"/>
+          <rect x="14" y="14" width="122" height="86" fill="#3a1f14"/>
+          <g fill="#fbe9d0"><rect x="28" y="30" width="30" height="6"/><rect x="28" y="44" width="54" height="6"/><rect x="28" y="58" width="40" height="6"/></g>
+          <circle cx="112" cy="70" r="14" fill="#e2531f"/>
+        </svg>
+        <span class="sleeve__name" style="color:#fbe9d0;left:24px;top:68px">之乎者也<small>罗大佑</small></span><span class="playing-tag">播放中</span>
+      </button>
+      <button class="sleeve" aria-pressed="false" data-album="debby" data-label="#2a4f8f" data-title="Waltz for Debby" data-meta="Bill Evans Trio · 1961 · 睡前">
+        <svg viewBox="0 0 150 150" aria-hidden="true">
+          <rect width="150" height="150" fill="#2a4f8f"/>
+          <circle cx="54" cy="58" r="30" fill="#fbe9d0"/>
+          <path d="M0 112 C40 96 80 128 150 104 L150 150 L0 150 Z" fill="#14284d"/>
+        </svg>
+        <span class="sleeve__name" style="color:#fbe9d0">Waltz for Debby<small>Bill Evans Trio</small></span><span class="playing-tag">播放中</span>
+      </button>
+    </div>
+
+    <div class="traces" aria-live="polite">
+      <article class="trace nm-reveal" data-trace="sunshower">
+        <p class="trace__label">前主人的痕迹</p>
+        <p class="trace__text">封套背面，用铅笔写着“1986.4.2”。</p>
+        <p class="trace__where">在老城区一家二手店的地上那箱里翻到</p>
+        <p class="trace__mine">我的私心：下雨天放第一首，窗外和唱片里一起下雨。</p>
+      </article>
+      <article class="trace" data-trace="for-you" hidden>
+        <p class="trace__label">前主人的痕迹</p>
+        <p class="trace__text">内袋里夹着一张手抄的歌词，字很工整。</p>
+        <p class="trace__where">在一个唱片市集的最后一个摊位</p>
+        <p class="trace__mine">我的私心：每年第一个热天拿出来放。</p>
+      </article>
+      <article class="trace" data-trace="zhihu" hidden>
+        <p class="trace__label">前主人的痕迹</p>
+        <p class="trace__text">封套里夹着一张旧电影票，票根已经发黄。</p>
+        <p class="trace__where">在旧书店角落翻到，我的第一张唱片</p>
+        <p class="trace__mine">我的私心：就是这张票让我开始只收“有痕迹”的唱片。</p>
+      </article>
+      <article class="trace" data-trace="debby" hidden>
+        <p class="trace__label">前主人的痕迹</p>
+        <p class="trace__text">封底贴着一张褪色的价签，看不清原价了。</p>
+        <p class="trace__where">朋友搬家时送我的</p>
+        <p class="trace__mine">我的私心：睡前只放 A 面。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" data-nm-id="guide">
+    <div class="block__kicker nm-reveal"><span class="latin">Start</span><h2>入坑指南（阿岚版）</h2></div>
+    <p class="block__sub nm-reveal">新手也欢迎。我自己就是这么开始的：</p>
+    <div class="guide" data-nm-stagger="110">
+      <div class="nm-ticket nm-reveal"><div class="nm-ticket__main"><b>第一张别超过 50 块</b><p>先确定自己是真喜欢听，还是喜欢“拥有唱片”的感觉。</p></div><div class="nm-ticket__stub">01</div></div>
+      <div class="nm-ticket nm-reveal"><div class="nm-ticket__main"><b>先买二手唱机，别急着上音响</b><p>能转、不跳针就够用，钱留着买唱片。</p></div><div class="nm-ticket__stub">02</div></div>
+      <div class="nm-ticket nm-reveal"><div class="nm-ticket__main"><b>去二手店翻最底下那箱</b><p>老板懒得整理的那箱，最容易遇到有故事的唱片。</p></div><div class="nm-ticket__stub">03</div></div>
+    </div>
+  </section>
+
+  <section class="block" data-nm-id="together">
+    <div class="block__kicker nm-reveal"><span class="latin">Together</span><h2>想找人一起</h2></div>
+    <div class="nm-ticket invite nm-reveal">
+      <div class="nm-ticket__main">
+        <p class="latin">WEEKEND · RECORD WALK</p>
+        <h3>周末一起逛二手唱片店</h3>
+        <p>边走边翻，最后交换一份听歌清单。不懂行也没关系，我带路。</p>
+      </div>
+      <div class="nm-ticket__stub"><span>ADMIT ONE</span></div>
+    </div>
+  </section>
+
+  <section class="about" data-nm-id="about">
+    <div class="block__kicker nm-reveal"><span class="latin">About</span><h2>关于阿岚</h2></div>
+    <p class="nm-reveal">入坑两年多。第一张是在旧书店角落翻到的《之乎者也》，封套里夹着一张旧电影票。从那以后，我只收有前主人痕迹的唱片——每一张都像多了一段别人的日子。</p>
+    <p class="nm-quote nm-reveal">唱片会转，日子也会转到别人手里。</p>
+    <div class="band nm-marquee" aria-hidden="true">
+      <div class="nm-marquee__track"><span>City Pop</span><span>Jazz</span><span>华语老歌</span><span>Second-hand</span><span>Side A</span></div>
+    </div>
+    <p class="end">阿岚 · 周末通常在唱片店</p>
+  </section>
+
+</main>
+<script>
+  nowme.ready(function () {
+    var sleeves = Array.prototype.slice.call(document.querySelectorAll('.sleeve'));
+    var traces = Array.prototype.slice.call(document.querySelectorAll('[data-trace]'));
+    var label = document.getElementById('record-label');
+    var title = document.getElementById('now-title');
+    var meta = document.getElementById('now-meta');
+
+    sleeves.forEach(function (sleeve) {
+      sleeve.addEventListener('click', function () {
+        var album = sleeve.getAttribute('data-album');
+        sleeves.forEach(function (item) { item.setAttribute('aria-pressed', item === sleeve ? 'true' : 'false'); });
+        traces.forEach(function (trace) {
+          var match = trace.getAttribute('data-trace') === album;
+          trace.hidden = !match;
+          if (match) trace.classList.add('is-visible');
+        });
+        label.style.backgroundColor = sleeve.getAttribute('data-label');
+        title.textContent = sleeve.getAttribute('data-title');
+        meta.textContent = sleeve.getAttribute('data-meta');
+      });
+    });
+  });
+</script>
+</body>
+</html>

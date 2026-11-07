@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "displayName": "林舟",
+  "tagline": "全栈偏后端，想找一位会做视觉和交互的设计",
+  "hooks": [
+    {
+      "id": "find-designer",
+      "kind": "looking-for",
+      "text": "找一位会做视觉和交互的设计",
+      "opener": "林舟你好！我是做设计的，看到你在找会做视觉和交互的队友，想聊聊你们的点子～"
+    },
+    {
+      "id": "help-backend",
+      "kind": "can-help",
+      "text": "我能帮你把接口和数据库搭起来",
+      "opener": "你好！在墙上看到你能搭接口和数据库，我们队有个点子正缺后端，方便聊聊吗？"
+    },
+    {
+      "id": "build-todo",
+      "kind": "want-to-build",
+      "text": "想做：课程群通知自动变待办",
+      "opener": "嗨，我也天天被课程群通知刷屏，对你想做的“通知变待办”很感兴趣，一起吗？"
+    }
+  ]
+}

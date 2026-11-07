@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "sceneType": "interest",
+  "kitVersion": "1",
+  "motionLevel": "calm",
+  "fonts": [
+    { "id": "lxgw-wenkai", "weights": [400] },
+    { "id": "noto-serif-sc", "weights": [900] },
+    { "id": "instrument-serif", "weights": [400] },
+    { "id": "jetbrains-mono", "weights": [400] }
+  ],
+  "extraChars": "",
+  "blocks": ["hero", "works", "story", "gear", "together"],
+  "generator": { "agent": "example", "skillVersion": "0.1.0" }
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "displayName": "阿岚",
+  "tagline": "只淘有前主人痕迹的二手黑胶",
+  "hooks": [
+    {
+      "id": "recommend-sunshower",
+      "kind": "recommend",
+      "text": "推荐你听大贯妙子的《Sunshower》",
+      "opener": "阿岚你好！听了你推荐的《Sunshower》，想问问你还有哪些雨天必放的唱片？"
+    },
+    {
+      "id": "guide-vinyl",
+      "kind": "ask-guide",
+      "text": "可以带你入门黑胶，从 50 块的唱片开始",
+      "opener": "你好！我刚想入坑黑胶，看到你的入坑指南，能带带我吗？"
+    },
+    {
+      "id": "record-walk",
+      "kind": "join-me",
+      "text": "想找人周末一起逛二手唱片店",
+      "opener": "嗨，我也爱逛二手唱片店，这周末一起去翻“最底下那箱”吗？"
+    }
+  ]
+}

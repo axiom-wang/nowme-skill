@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "sceneType": "interest",
+  "kitVersion": "1",
+  "motionLevel": "medium",
+  "fonts": [
+    { "id": "noto-serif-sc", "weights": [400, 900] },
+    { "id": "instrument-serif", "weights": [400] }
+  ],
+  "extraChars": "夏",
+  "blocks": ["hero", "collection", "guide", "together", "about"],
+  "generator": { "agent": "example", "skillVersion": "0.1.0" }
+}

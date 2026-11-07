@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "displayName": "苏晴",
+  "tagline": "做产品和交互设计，找一位后端和一位懂 AI 的开发",
+  "hooks": [
+    {
+      "id": "find-backend",
+      "kind": "looking-for",
+      "text": "找一位后端，最好也懂 AI",
+      "opener": "苏晴你好！我写后端，也调过大模型 API，看到你的组队启事想来聊聊～"
+    },
+    {
+      "id": "help-prototype",
+      "kind": "can-help",
+      "text": "我能把模糊的点子画成能点的原型",
+      "opener": "你好！我们队点子有了但还没原型，看到你能做可交互原型，想请你来聊聊。"
+    },
+    {
+      "id": "build-review-cards",
+      "kind": "want-to-build",
+      "text": "想做：上课录音变复习卡片",
+      "opener": "嗨，我也被期末翻录音折磨过，对“录音变复习卡片”很感兴趣，一起做吗？"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "hackathon",
+  "label": "黑客松 / 创业营",
+  "goal": "几小时内找到队友：让别人一眼看出你能做什么、想找什么样的人",
+  "interviewBudgetSeconds": 90,
+  "assetPrompt": "贴一个你做过的东西：链接、截图、一句话描述都行；现成的自我介绍或简历片段也可以直接贴。没有就回复“跳过”。",
+  "choiceQuestions": [
+    {
+      "id": "role",
+      "question": "你这次主要担任什么角色？",
+      "options": ["开发", "设计", "产品", "其他：一句话说明"],
+      "multi": false,
+      "required": false
+    },
+    {
+      "id": "skills",
+      "question": "挑 1–3 个你最拿得出手的技能（可多选，也可以自己写）",
+      "options": ["前端", "后端", "全栈", "小程序 / 移动端", "AI 应用 / 大模型", "数据分析", "硬件 / 嵌入式", "UI / 视觉", "交互 / 动效", "用户研究", "产品规划", "路演 / 讲故事", "其他：直接写"],
+      "multi": true,
+      "required": false
+    },
+    {
+      "id": "teammate",
+      "question": "【必答】你想找什么样的队友？（可多选，也可以直接写一句话）",
+      "options": ["会做视觉 / UI 的设计", "能把原型变成能点的页面的前端", "能写后端 / 接口 / 数据库的开发", "懂 AI / 模型 / 数据的开发", "会做硬件 / 嵌入式的人", "能理需求、写文档的产品", "会路演、讲故事的人", "什么都愿意学、能一起熬夜的人", "其他：直接写"],
+      "multi": true,
+      "required": true
+    },
+    {
+      "id": "direction",
+      "question": "这次想做的方向（可多选）",
+      "options": ["AI 应用", "效率工具", "校园 / 生活服务", "社交 / 内容", "硬件 / IoT", "游戏 / 创意", "公益 / 社会议题", "还没想好，跟队友一起定"],
+      "multi": true,
+      "required": false
+    },
+    {
+      "id": "boundaries",
+      "question": "页面上可以出现哪些？（已按黑客松墙预选，回复编号增减；联系方式不写进页面，在应用内发布时设置）",
+      "options": ["显示学校（默认勾选，组队时有用）", "显示年级和专业（默认勾选）", "用真名（不选就用你给的昵称）", "可以放你本人的照片", "可以放项目链接（访客点击时平台会先确认再打开）", "有不想出现的内容：直接写"],
+      "multi": true,
+      "required": false
+    }
+  ],
+  "followUps": [
+    {
+      "direction": "做过的一个具体项目：解决了谁的什么问题、你负责哪一部分、现在到哪一步了",
+      "examples": ["做过一个能用的小东西（说说它解决什么、你写了哪部分）", "比赛或课程项目（说说你负责的那块）", "有个做到一半的项目（说说卡在哪）", "跳过"]
+    },
+    {
+      "direction": "这次的想法有多具体：想解决谁的什么问题",
+      "examples": ["已经有明确的点子（一句话讲讲）", "有个大方向，细节想跟队友一起定", "完全没想好，想加入别人的点子", "跳过"]
+    }
+  ],
+  "maxFollowUps": 1,
+  "mustHave": [
+    { "id": "role", "description": "角色：开发 / 设计 / 产品 / 其他，一个词即可" },
+    { "id": "skill", "description": "至少 1 项具体技能（例如“小程序前端”，而不是“编程”）" },
+    { "id": "teammate", "description": "想找什么样的队友（唯一的必答题，要放进首屏和封面）" },
+    { "id": "project-or-idea", "description": "1 个具体项目或这次的想法：做了 / 想做什么、你负责哪部分" }
+  ],
+  "hookKinds": [
+    { "kind": "can-help", "pattern": "我能帮你做 X（X 是具体的产出，例如“把原型变成能点的页面”）" },
+    { "kind": "looking-for", "pattern": "找会 Y 的队友" },
+    { "kind": "want-to-build", "pattern": "我想做 Z（这次想做的方向或点子）" }
+  ],
+  "defaults": { "showSchool": true, "useNickname": false, "contactPublic": true },
+  "pageGoal": "首屏和封面（页面顶部 375×500）一眼看出：角色、最拿得出手的 1–3 个技能、想找什么样的队友；往下是 1 个具体项目（做了什么、负责哪部分、截图或外链）和这次想做的方向。信息密度可以高，让人扫一眼就能判断“要不要来聊”。",
+  "suggestedBlocks": ["hero", "teammate", "projects", "skills", "idea"],
+  "visualTone": "偏利落、科技感：清晰的网格与层级、等宽或几何无衬线字、一个高对比点缀色；只是建议，主人选的风格优先。页面不能联网：可运行的 demo 只能放截图、动图或用 data-nm-href 外链。",
+  "examples": ["hackathon-terminal", "hackathon-poster"]
+}

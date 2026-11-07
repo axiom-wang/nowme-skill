@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "displayName": "周一鸣",
+  "tagline": "桌游社第三年，新人局规则我来讲",
+  "hooks": [
+    {
+      "id": "first-game",
+      "kind": "ask-me",
+      "text": "可以来问我：第一款桌游怎么选",
+      "opener": "学长好！我是新人，想买第一款桌游，能帮我挑一挑吗？"
+    },
+    {
+      "id": "catan-rules",
+      "kind": "ask-me",
+      "text": "可以来问我：三十秒学会《卡坦岛》",
+      "opener": "学长好！想挑战一下三十秒学会《卡坦岛》，周五新人局能教我吗？"
+    },
+    {
+      "id": "make-a-game",
+      "kind": "want-to-try",
+      "text": "想带新人一起做一款自己的桌游",
+      "opener": "学长好！我对自己做桌游超感兴趣，想加入你的原型小队～"
+    }
+  ]
+}

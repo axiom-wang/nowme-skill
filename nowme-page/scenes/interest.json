@@ -1,0 +1,63 @@
+{
+  "id": "interest",
+  "label": "兴趣社群",
+  "goal": "在共同的兴趣里找到“同频的人”",
+  "interviewBudgetSeconds": 120,
+  "assetPrompt": "贴几张和这个爱好有关的照片：作品、收藏、现场都行；也可以贴一段你写过的相关文字或作品链接。没有就回复“跳过”。",
+  "choiceQuestions": [
+    {
+      "id": "tenure",
+      "question": "入坑多久了？",
+      "options": ["刚入坑（新手也欢迎）", "半年到两年", "两年以上", "断断续续，说不清"],
+      "multi": false,
+      "required": false
+    },
+    {
+      "id": "mode",
+      "question": "你在这个爱好里更偏哪种？（可多选）",
+      "options": ["创作：自己做 / 拍 / 写 / 画", "收集：攒东西、列清单", "交流：聊天、安利、看别人的", "现场：去活动、演出、展览", "研究：查资料、讲门道"],
+      "multi": true,
+      "required": false
+    },
+    {
+      "id": "together",
+      "question": "【重要】想找人一起做什么？（可多选，也可以直接写一句话）",
+      "options": ["一起去现场 / 活动", "互相安利、交换收藏或清单", "一起创作、合作一个作品", "求带入门", "想带新人入门", "线上聊聊就好", "其他：直接写"],
+      "multi": true,
+      "required": true
+    },
+    {
+      "id": "boundaries",
+      "question": "页面上可以出现哪些？（已按兴趣社群预选，回复编号增减；联系方式不写进页面，在应用内发布时设置）",
+      "options": ["用昵称，不用真名（默认勾选）", "不显示学校（默认勾选）", "可以放你的作品或收藏照片", "可以放你本人的照片", "有不想出现的内容：直接写"],
+      "multi": true,
+      "required": false
+    }
+  ],
+  "followUps": [
+    {
+      "direction": "这个爱好里你独特的角度：最痴迷的一件作品或物件，以及为什么",
+      "examples": ["有一件最宝贝的收藏 / 作品（说说它和背后的事）", "有个只有我会注意的细节或口味", "有一次忘不掉的现场", "跳过"]
+    },
+    {
+      "direction": "入坑的故事：怎么开始的、哪一刻真正上头",
+      "examples": ["被一个人 / 一部作品带进坑", "某次偶然的经历", "从小就喜欢", "跳过"]
+    }
+  ],
+  "maxFollowUps": 2,
+  "mustHave": [
+    { "id": "angle", "description": "你在这个爱好里的个人角度（偏好、口味、关注点），不是“喜欢 X”这种泛泛的说法" },
+    { "id": "favorite", "description": "1 个具体的作品、收藏或喜好（有名字、有细节）" },
+    { "id": "together", "description": "1 件想和别人一起做的事" }
+  ],
+  "hookKinds": [
+    { "kind": "recommend", "pattern": "推荐你看 / 听 / 试 X" },
+    { "kind": "ask-guide", "pattern": "求带 Y（或：可以带你入门 Y）" },
+    { "kind": "join-me", "pattern": "想找人一起去 / 一起做 Z" }
+  ],
+  "defaults": { "showSchool": false, "useNickname": true, "contactPublic": false },
+  "pageGoal": "作品或爱好本身是视觉主角：首屏先让人看到你最痴迷的东西（作品、收藏、现场），个人信息靠后、点到为止。让同好一眼认出“同类”，并知道可以约你一起做什么。",
+  "suggestedBlocks": ["hero", "collection", "works", "guide", "together"],
+  "visualTone": "跟着兴趣本身的气质走：胶片就有颗粒与相纸，黑胶就有唱片与封套，手作就有纸张与胶带；只是建议，主人选的风格优先。",
+  "examples": ["interest-vinyl", "interest-film-zine"]
+}

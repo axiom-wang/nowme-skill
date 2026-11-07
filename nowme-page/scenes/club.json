@@ -1,0 +1,74 @@
+{
+  "id": "club",
+  "label": "社团招新 / 新成员入群",
+  "goal": "在一个长期的圈子里被记住：新成员让大家认识你，老成员让新人知道可以来问你什么",
+  "interviewBudgetSeconds": 180,
+  "assetPrompt": "贴一段自我介绍，或几张能代表你的照片（生活照、作品、你的桌面都行）。没有就回复“跳过”。",
+  "choiceQuestions": [
+    {
+      "id": "member-type",
+      "question": "【先选这个】你是新成员还是老成员？",
+      "options": ["新成员：想让大家认识我", "老成员：想让新人知道可以来问我什么"],
+      "multi": false,
+      "required": true
+    },
+    {
+      "id": "grade-major",
+      "question": "年级和专业（可以跳过）",
+      "options": ["直接写，例如“大一 · 新闻传播”", "只写年级", "跳过"],
+      "multi": false,
+      "required": false
+    },
+    {
+      "id": "want-to-try",
+      "question": "想在社团里尝试什么？（可多选；老成员可以写想带新人做的事）",
+      "options": ["第一次上台 / 出镜", "做一个完整的作品或活动", "学一门新手艺", "认识不同专业的朋友", "帮社团做宣传 / 拍照 / 设计", "带新人、分享经验（老成员）", "其他：直接写"],
+      "multi": true,
+      "required": false
+    },
+    {
+      "id": "outside-hobby",
+      "question": "社团之外，你最近在玩什么？（可多选，也可以直接写）",
+      "options": ["运动", "游戏", "追剧 / 看番 / 综艺", "音乐", "做饭 / 探店", "手作 / 画画", "旅行 / 城市散步", "其他：直接写"],
+      "multi": true,
+      "required": false
+    },
+    {
+      "id": "boundaries",
+      "question": "页面上可以出现哪些？（已按社团墙预选，回复编号增减；联系方式不写进页面，在应用内发布时设置）",
+      "options": ["显示年级和专业（默认勾选）", "用真名（不选就用你给的昵称）", "可以放你本人的照片", "有不想出现的内容：直接写"],
+      "multi": true,
+      "required": false
+    }
+  ],
+  "followUps": [
+    {
+      "direction": "一个让人记住你的具体细节：奇怪的技能、最近在沉迷的事、一个小习惯",
+      "examples": ["有个冷门技能（说说是什么）", "最近沉迷一件事（具体到名字）", "有个朋友都知道的小习惯", "跳过"]
+    },
+    {
+      "direction": "为什么来这个社团（老成员：为什么一直留下来）",
+      "examples": ["被一次活动 / 一个人吸引", "想补上一直想做的事", "留下来是因为这里的人", "跳过"]
+    },
+    {
+      "direction": "老成员：新人最常来问你什么、你最乐意帮什么忙",
+      "examples": ["器材 / 软件怎么用", "选课、实习、作品集", "社团里的老规矩和隐藏玩法", "跳过"]
+    }
+  ],
+  "maxFollowUps": 3,
+  "mustHave": [
+    { "id": "detail", "description": "1 个让人记住你的具体细节（技能、沉迷的事、小习惯），要具体到名字或场景" },
+    { "id": "want-to-try", "description": "想在社团里尝试的事（老成员：可以来问我的事，或想带新人做的事）" },
+    { "id": "outside-hobby", "description": "1 个社团之外的爱好" }
+  ],
+  "hookKinds": [
+    { "kind": "ask-me", "pattern": "可以来问我 X（老成员）" },
+    { "kind": "want-to-try", "pattern": "我也想试 Y（找同样想试的人）" },
+    { "kind": "obsessed", "pattern": "我在沉迷 Z" }
+  ],
+  "defaults": { "showSchool": false, "useNickname": false, "contactPublic": false },
+  "pageGoal": "突出个性和趣味，可以更玩一点：首屏就是“你这个人”（名字 + 一个让人记住的细节）。新成员：想尝试的事和社团之外的爱好，让人找到话头；老成员：“可以来问我”的清单放在显眼处。主人同意时显示年级和专业。",
+  "suggestedBlocks": ["hero", "intro", "want-to-try", "ask-me", "hobbies"],
+  "visualTone": "偏活泼、个人化：贴纸、手写感、游戏感、可以点着玩的小互动都合适；只是建议，主人选的风格优先。",
+  "examples": ["club-newbie-sticker", "club-senior-quest"]
+}

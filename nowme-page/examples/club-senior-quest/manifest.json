@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "sceneType": "club",
+  "kitVersion": "1",
+  "motionLevel": "lively",
+  "fonts": [
+    { "id": "smiley-sans", "weights": [400] },
+    { "id": "noto-sans-sc", "weights": [500] },
+    { "id": "jetbrains-mono", "weights": [800] }
+  ],
+  "extraChars": "",
+  "blocks": ["hero", "ask-me", "side-quest", "inventory", "achievement"],
+  "generator": { "agent": "example", "skillVersion": "0.1.0" }
+}

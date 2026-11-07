@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN" class="nm-theme-candy" data-nm-motion="lively">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>小满 · 话剧社新人报到</title>
+<link rel="stylesheet" href="/_nowme/kit/v1/nowme.css">
+<script src="/_nowme/kit/v1/nowme.js"></script>
+<style>
+  :root {
+    --nm-font-body: var(--nm-font-lxgw-wenkai);
+    --nm-font-hand: var(--nm-font-lxgw-wenkai);
+    --nm-font-display: var(--nm-font-smiley-sans);
+    --nm-display-weight: 400;
+    --latin: "Space Grotesk", var(--nm-font-smiley-sans);
+    --pink: #ff4f9a;
+    --blue: #3d7bff;
+    --lemon: #ffd23f;
+    --mint: #6fe3b4;
+    --plum: #2b1631;
+  }
+  body { font-size: 16px; line-height: 1.75; }
+
+  /* ---------- 顶部跑马灯 ---------- */
+  .ribbon { margin-inline: calc(var(--nm-gutter) * -1); padding: 7px 0; background: var(--plum); color: var(--lemon); --nm-marquee-duration: 16s; --nm-marquee-gap: 1.2rem; }
+  .ribbon .nm-marquee__track { font-family: var(--latin); font-weight: 700; font-size: 14px; letter-spacing: 0.08em; }
+  .ribbon .nm-marquee__track span:nth-child(even) { color: #fff; font-family: var(--nm-font-display); }
+
+  /* ---------- 首屏 ---------- */
+  .hero { position: relative; margin-inline: calc(var(--nm-gutter) * -1); padding: 0 var(--nm-gutter) 30px; --nm-pattern-color: rgba(255, 79, 154, 0.22); --nm-pattern-size: 20px; }
+  .stage { position: relative; height: 330px; }
+  .hello { position: absolute; left: 0; top: 16px; font-size: 18px; }
+  .bigname { position: absolute; left: -6px; top: 58px; font-family: var(--nm-font-display); font-size: 150px; line-height: 1; color: var(--plum); text-shadow: 5px 5px 0 var(--pink); letter-spacing: -0.02em; }
+  .stage .nm-sticker { position: absolute; z-index: 2; }
+  .s-dialect { right: 2px; top: 34px; --nm-sticker-size: 112px; --nm-sticker-bg: var(--blue); --nm-sticker-fg: #fff; --nm-tilt: 10deg; font-size: 15px; line-height: 1.25; }
+  .s-new { left: 196px; top: 168px; --nm-sticker-size: 92px; --nm-sticker-bg: var(--lemon); --nm-tilt: -8deg; font-family: var(--latin); font-size: 20px; }
+  .s-tree { left: 6px; top: 236px; --nm-sticker-bg: var(--mint); --nm-tilt: -5deg; font-size: 15px; }
+  .s-puzzle { right: 6px; top: 268px; --nm-sticker-bg: var(--pink); --nm-sticker-fg: #fff; --nm-tilt: 6deg; font-size: 15px; }
+  .drag-hint { position: absolute; left: 0; bottom: -2px; font-size: 12px; color: var(--nm-muted); }
+  .id-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .id-row .nm-chip { border: 2px solid var(--plum); background: #fff; font-size: 14px; font-weight: 400; }
+  .id-row .nm-chip--accent { background: var(--plum); color: var(--lemon); }
+
+  /* ---------- 区块 ---------- */
+  .block { padding: 40px 0 6px; }
+  .block__title { display: flex; align-items: center; gap: 10px; font-family: var(--nm-font-display); font-size: 30px; line-height: 1.2; }
+  .block__title i { font-style: normal; display: inline-grid; place-items: center; width: 36px; height: 36px; border: 2px solid var(--plum); border-radius: 50%; background: var(--lemon); font-family: var(--latin); font-weight: 700; font-size: 16px; }
+  .block__sub { margin-top: 4px; font-size: 14px; color: var(--nm-muted); }
+
+  /* ---------- 方言卡 ---------- */
+  .dialect { margin-top: 16px; padding: 22px 20px 18px; border: 3px solid var(--plum); border-radius: 22px; background: #fff; box-shadow: 6px 6px 0 var(--plum); }
+  .dialect p { display: flex; flex-direction: column; gap: 4px; }
+  .dialect .which { display: flex; justify-content: space-between; font-size: 14px; color: var(--nm-muted); }
+  .dialect .which b { font-family: var(--latin); font-weight: 700; color: var(--pink); }
+  .dialect .say { font-family: var(--nm-font-display); font-size: 40px; line-height: 1.2; color: var(--plum); }
+  .tap { display: flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 13px; color: var(--nm-muted); }
+  .tap::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--pink); }
+
+  /* ---------- 想尝试 ---------- */
+  .wishes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+  .wish { min-height: 150px; }
+  .wish .nm-flip__inner { min-height: inherit; }
+  .wish .nm-flip__front, .wish .nm-flip__back { display: flex; flex-direction: column; justify-content: space-between; padding: 14px; border: 2.5px solid var(--plum); border-radius: 18px; }
+  .wish .nm-flip__front { background: var(--lemon); }
+  .wish:nth-child(2) .nm-flip__front { background: var(--mint); }
+  .wish:nth-child(3) .nm-flip__front { background: #ffc2dc; }
+  .wish .nm-flip__back { background: var(--plum); color: #fff; font-size: 14px; line-height: 1.6; }
+  .wish .no { font-family: var(--latin); font-weight: 700; font-size: 13px; }
+  .wish h3 { font-size: 24px; line-height: 1.2; }
+  .wish .flip { font-size: 12px; opacity: 0.7; }
+  .wish.wide { grid-column: 1 / -1; min-height: 120px; }
+
+  /* ---------- 社团之外 ---------- */
+  .hobbies { display: grid; gap: 14px; margin-top: 16px; }
+  .hobby { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: center; padding: 12px 14px; border: 2px dashed var(--plum); border-radius: 18px; background: rgba(255, 255, 255, 0.7); }
+  .hobby svg { width: 72px; height: 72px; }
+  .hobby h3 { font-size: 21px; line-height: 1.2; }
+  .hobby p { margin-top: 2px; font-size: 14px; line-height: 1.6; }
+
+  /* ---------- 打招呼 ---------- */
+  .hi { padding: 44px 0 56px; text-align: center; }
+  .hi .nm-speech { max-width: 300px; padding: 16px 18px; border: 3px solid var(--plum); border-radius: 22px; font-size: 17px; line-height: 1.6; text-align: left; }
+  .hi .nm-speech::after { left: 50%; margin-left: -8px; border-width: 3px; }
+  .wave { margin-top: 28px; padding: 14px 26px; border: 3px solid var(--plum); border-radius: 999px; background: var(--pink); color: #fff; font-family: var(--nm-font-display); font-size: 22px; box-shadow: 5px 5px 0 var(--plum); }
+  .wave:active { translate: 3px 3px; box-shadow: 2px 2px 0 var(--plum); }
+  .wave-note { margin-top: 12px; font-size: 13px; color: var(--nm-muted); }
+</style>
+</head>
+<body>
+<div class="nm-page">
+
+  <div class="ribbon nm-marquee" aria-hidden="true">
+    <div class="nm-marquee__track"><span>NEW MEMBER</span><span>新人报到</span><span>QINGTENG DRAMA</span><span>青藤话剧社</span></div>
+  </div>
+
+  <header class="hero nm-bg-dots" data-nm-id="hero">
+    <div class="stage">
+      <p class="hello">你好，我是</p>
+      <h1 class="bigname">小满</h1>
+      <span class="nm-sticker nm-sticker--round s-dialect nm-float" data-nm-drag>会用五种方言说“你吃了没”</span>
+      <span class="nm-sticker nm-sticker--burst s-new nm-wiggle" data-nm-drag>NEW!</span>
+      <span class="nm-sticker s-tree" data-nm-drag>想上台，哪怕演一棵树</span>
+      <span class="nm-sticker s-puzzle" data-nm-drag>在拼 1000 片的星空</span>
+      <span class="drag-hint">（贴纸可以拖着玩）</span>
+    </div>
+    <div class="id-row">
+      <span class="nm-chip nm-chip--accent">话剧社新人</span><span class="nm-chip">大一</span><span class="nm-chip">新闻传播</span>
+    </div>
+  </header>
+
+  <section class="block" data-nm-id="detail">
+    <h2 class="block__title nm-reveal"><i>01</i>记住我的方法</h2>
+    <p class="block__sub nm-reveal">我会用五种方言说“你吃了没”。点卡片听下一种：</p>
+    <div class="dialect nm-reveal" data-nm-cycle aria-label="点一下换一种方言">
+      <p><span class="which">四川话<b>1/5</b></span><span class="say">你吃了没得？</span></p>
+      <p><span class="which">粤语<b>2/5</b></span><span class="say">食咗饭未呀？</span></p>
+      <p><span class="which">上海话<b>3/5</b></span><span class="say">侬饭吃过伐？</span></p>
+      <p><span class="which">湖南话<b>4/5</b></span><span class="say">你恰饭冒？</span></p>
+      <p><span class="which">普通话<b>5/5</b></span><span class="say">你吃了没？</span></p>
+    </div>
+    <p class="tap">都是跟室友和家里人学的，发音不标准请多包涵</p>
+  </section>
+
+  <section class="block" data-nm-id="want-to-try">
+    <h2 class="block__title nm-reveal"><i>02</i>在话剧社想试试</h2>
+    <p class="block__sub nm-reveal">点卡片翻到背面，看我为什么想试。</p>
+    <div class="wishes" data-nm-stagger="100">
+      <div class="nm-flip wish nm-reveal" data-nm-flip>
+        <div class="nm-flip__inner">
+          <div class="nm-flip__front"><span class="no">WISH 1</span><h3>第一次上台</h3><span class="flip">点我翻面</span></div>
+          <div class="nm-flip__back">哪怕演一棵树，也想站上去一次，听听台下的声音。</div>
+        </div>
+      </div>
+      <div class="nm-flip wish nm-reveal" data-nm-flip>
+        <div class="nm-flip__inner">
+          <div class="nm-flip__front"><span class="no">WISH 2</span><h3>学写剧本</h3><span class="flip">点我翻面</span></div>
+          <div class="nm-flip__back">想把宿舍的夜谈写成一出十分钟的小戏。</div>
+        </div>
+      </div>
+      <div class="nm-flip wish wide nm-reveal" data-nm-flip>
+        <div class="nm-flip__inner">
+          <div class="nm-flip__front"><span class="no">WISH 3</span><h3>帮社团拍演出现场</h3><span class="flip">点我翻面</span></div>
+          <div class="nm-flip__back">我学新闻，想练练拍现场：后台、侧幕、谢幕那一刻。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" data-nm-id="hobbies">
+    <h2 class="block__title nm-reveal"><i>03</i>社团之外</h2>
+    <div class="hobbies" data-nm-stagger="90">
+      <div class="hobby nm-reveal">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><path d="M8 20h18a8 8 0 1 1 12 0h18v18a8 8 0 1 0 0 12v14H8z" fill="#3d7bff" stroke="#2b1631" stroke-width="3" stroke-linejoin="round"/><circle cx="24" cy="46" r="3" fill="#ffd23f"/><circle cx="40" cy="36" r="2" fill="#fff"/><circle cx="18" cy="32" r="2" fill="#fff"/></svg>
+        <div><h3>拼图</h3><p>在拼一幅 1000 片的星空，卡在全是黑色的那块天空。</p></div>
+      </div>
+      <div class="hobby nm-reveal">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="10" y="16" width="52" height="34" rx="8" fill="#ffd23f" stroke="#2b1631" stroke-width="3"/><rect x="16" y="22" width="16" height="12" rx="2" fill="#fff" stroke="#2b1631" stroke-width="2"/><rect x="38" y="22" width="18" height="12" rx="2" fill="#fff" stroke="#2b1631" stroke-width="2"/><circle cx="22" cy="54" r="6" fill="#2b1631"/><circle cx="50" cy="54" r="6" fill="#2b1631"/></svg>
+        <div><h3>坐公交到终点站</h3><p>周末随便上一路公交，坐到终点再走回来。</p></div>
+      </div>
+      <div class="hobby nm-reveal">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="14" y="10" width="44" height="54" rx="4" fill="#fff" stroke="#2b1631" stroke-width="3"/><path d="M22 24h28M22 34h28M22 44h18" stroke="#ff4f9a" stroke-width="3" stroke-linecap="round"/><path d="M48 50l8 8" stroke="#2b1631" stroke-width="4" stroke-linecap="round"/></svg>
+        <div><h3>抄段子</h3><p>看喜剧综艺时，会把好笑的句子抄在小本子上。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hi" data-nm-id="say-hi">
+    <p class="nm-speech nm-reveal">新人一枚，请多指教！想一起报名排练、一起拼图的，点页面下方的“想聊这个”就能找到我。</p>
+    <div><button class="wave" data-nm-confetti="90">跟我打个招呼</button></div>
+    <p class="wave-note">（按钮只会撒花，真正找我请用“想聊这个”）</p>
+  </section>
+
+</div>
+</body>
+</html>

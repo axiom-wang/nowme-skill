@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "examples": [
+    {
+      "dir": "hackathon-terminal",
+      "sceneType": "hackathon",
+      "style": "深色终端控制台：等宽字、命令行区块、荧光绿招募卡，像一段正在运行的程序",
+      "persona": "林舟：全栈偏后端，找一位会做视觉和交互的设计；书递小程序、群通知变待办",
+      "motionLevel": "medium"
+    },
+    {
+      "dir": "hackathon-poster",
+      "sceneType": "hackathon",
+      "style": "瑞士招募海报：暖白底、超大黑字、信号橙圆形与网格线，像走廊里的组队启事",
+      "persona": "苏晴：产品 + 交互设计，找一位后端和一位懂 AI 的开发；可点选的匹配小测与撕条",
+      "motionLevel": "calm"
+    },
+    {
+      "dir": "interest-vinyl",
+      "sceneType": "interest",
+      "style": "七十年代唱片店：奶油底四色条纹、旋转的黑胶做主角、可以抽出来的唱片封套",
+      "persona": "阿岚：只淘有前主人痕迹的二手黑胶；入坑指南票根、周末逛唱片店",
+      "motionLevel": "medium"
+    },
+    {
+      "dir": "interest-film-zine",
+      "sceneType": "interest",
+      "style": "胶片手账小志：牛皮纸颗粒、竖排标题、拍立得与纸胶带、可翻面的照片和冲洗小票",
+      "persona": "栗子：凌晨四点去菜市场拍摊主的手；印样胶片条、想找人一起早起拍",
+      "motionLevel": "calm"
+    },
+    {
+      "dir": "club-newbie-sticker",
+      "sceneType": "club",
+      "style": "糖果贴纸本：亮粉柠檬黄、超大名字、可以拖着玩的贴纸、点一下换一种方言",
+      "persona": "小满：话剧社新成员，会用五种方言说“你吃了没”；想第一次上台",
+      "motionLevel": "lively"
+    },
+    {
+      "dir": "club-senior-quest",
+      "sceneType": "club",
+      "style": "像素 RPG 角色卡：深色星空、像素描边、对话框打字、“可以来问我”任务板",
+      "persona": "周一鸣：桌游社第三年的老成员，新人局规则我来讲；隐藏成就彩蛋",
+      "motionLevel": "lively"
+    }
+  ]
+}

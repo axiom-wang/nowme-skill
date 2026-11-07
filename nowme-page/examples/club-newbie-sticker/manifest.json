@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "sceneType": "club",
+  "kitVersion": "1",
+  "motionLevel": "lively",
+  "fonts": [
+    { "id": "smiley-sans", "weights": [400] },
+    { "id": "lxgw-wenkai", "weights": [400] },
+    { "id": "space-grotesk", "weights": [700] }
+  ],
+  "extraChars": "",
+  "blocks": ["hero", "detail", "want-to-try", "hobbies", "say-hi"],
+  "generator": { "agent": "example", "skillVersion": "0.1.0" }
+}

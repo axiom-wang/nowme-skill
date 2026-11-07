@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN" class="nm-theme-terminal" data-nm-motion="medium">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>林舟 · 全栈偏后端 · 在找设计队友</title>
+<link rel="stylesheet" href="/_nowme/kit/v1/nowme.css">
+<script src="/_nowme/kit/v1/nowme.js"></script>
+<style>
+  :root {
+    --nm-font-body: "JetBrains Mono", var(--nm-font-noto-sans-sc);
+    --nm-font-display: var(--nm-font-noto-sans-sc);
+    --nm-font-code: "JetBrains Mono", var(--nm-font-noto-sans-sc);
+    --nm-terminal-bg: #0f1511;
+    --nm-terminal-fg: #d7f5df;
+    --nm-terminal-accent: #39ff88;
+    --green: #39ff88;
+    --amber: #ffb02e;
+    --cyan: #5ad1ff;
+    --red: #ff6b6b;
+  }
+  body { font-size: 15px; line-height: 1.7; }
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 2147481000; pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 3px);
+  }
+  .muted { color: var(--nm-muted); }
+  .g { color: var(--green); }
+  .a { color: var(--amber); }
+  .c { color: var(--cyan); }
+  .r { color: var(--red); }
+
+  /* ---------- 首屏 ---------- */
+  .hero { position: relative; overflow: hidden; margin-inline: calc(var(--nm-gutter) * -1); padding: 22px var(--nm-gutter) 40px; }
+  .hero .nm-particles { opacity: 0.32; }
+  .hero__inner { position: relative; z-index: 1; }
+  .status { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--nm-muted); white-space: nowrap; overflow: hidden; }
+  .status__dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+  .cmd { margin-top: 22px; font-size: 13px; color: var(--nm-muted); }
+  .cmd b { color: var(--green); font-weight: 400; }
+  .name { margin-top: 4px; font-family: var(--nm-font-display); font-size: 60px; line-height: 1; font-weight: 700; letter-spacing: 0.04em; }
+  .name small { margin-left: 10px; font-family: var(--nm-font-code); font-size: 14px; font-weight: 400; letter-spacing: 0; color: var(--nm-muted); vertical-align: middle; }
+  .role { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; }
+  .role span::before { content: "# "; color: var(--nm-muted); }
+  .echo { margin-top: 10px; min-height: 1.7em; font-size: 13px; color: var(--amber); }
+  .echo::before { content: "> "; color: var(--nm-muted); }
+
+  .issue {
+    position: relative; margin-top: 22px; padding: 16px 16px 18px; border: 1px solid rgba(57, 255, 136, 0.55); border-radius: 12px;
+    background: linear-gradient(180deg, rgba(57, 255, 136, 0.1), rgba(57, 255, 136, 0.02));
+    box-shadow: 0 0 0 1px rgba(57, 255, 136, 0.06) inset, 0 0 42px rgba(57, 255, 136, 0.14);
+  }
+  .issue__meta { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--nm-muted); }
+  .open { display: inline-flex; align-items: center; gap: 5px; padding: 1px 9px; border-radius: 999px; background: #1f883d; color: #fff; font-weight: 700; }
+  .open::before { content: ""; width: 7px; height: 7px; border: 2px solid #fff; border-radius: 50%; }
+  .issue__title { margin: 10px 0 8px; font-family: var(--nm-font-display); font-size: 27px; line-height: 1.28; font-weight: 700; color: #f3fff6; }
+  .issue__title em { font-style: normal; color: var(--green); text-shadow: 0 0 18px rgba(57, 255, 136, 0.45); }
+  .issue__body { font-size: 13.5px; color: #b9d8c2; }
+  .labels { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .label { padding: 1px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; border: 1px solid currentColor; }
+
+  .skills-inline { margin-top: 18px; }
+  .skills-inline .nm-chip { font-size: 12.5px; color: var(--nm-fg); border-color: rgba(215, 245, 223, 0.28); }
+  .hint { margin-top: 26px; color: var(--nm-muted); }
+
+  /* ---------- 区块通用 ---------- */
+  .block { padding: 40px 0 8px; }
+  .block__cmd { font-size: 13px; color: var(--nm-muted); margin-bottom: 12px; }
+  .block__cmd b { color: var(--green); font-weight: 400; }
+  .block h2 { font-size: 24px; margin-bottom: 14px; color: #f3fff6; }
+
+  /* ---------- 分工 diff ---------- */
+  .diff { font-size: 13.5px; }
+  .diff .nm-terminal__body { padding-inline: 0; }
+  .diff-line { display: block; padding: 2px 16px; }
+  .diff-line.add { background: rgba(57, 255, 136, 0.09); }
+  .diff-line.del { background: rgba(255, 107, 107, 0.09); }
+  .diff-line.hunk { color: var(--cyan); }
+  .diff-line::before { display: inline-block; width: 1.4em; color: var(--nm-muted); }
+  .diff-line.add::before { content: "+"; color: var(--green); }
+  .diff-line.del::before { content: "-"; color: var(--red); }
+  .quote { margin-top: 18px; padding-left: 14px; border-left: 3px solid var(--green); font-family: var(--nm-font-display); font-size: 17px; line-height: 1.6; color: #f3fff6; }
+  .quote small { display: block; margin-top: 4px; font-family: var(--nm-font-code); font-size: 12px; color: var(--nm-muted); }
+
+  /* ---------- 项目 ---------- */
+  .project { display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: start; }
+  .project .nm-phone { --nm-phone-width: 150px; padding: 7px; border-radius: 26px; }
+  .project .nm-phone::before { top: 13px; height: 12px; }
+  .project .nm-phone__screen { border-radius: 20px; background: #f5f7f5; }
+  .project h3 { font-size: 22px; color: #f3fff6; }
+  .project h3 small { display: block; margin-top: 4px; font-family: var(--nm-font-code); font-size: 12px; font-weight: 400; color: var(--nm-muted); }
+  .facts { margin: 12px 0 0; padding: 0; list-style: none; font-size: 13px; }
+  .facts li { padding: 6px 0; border-bottom: 1px dashed var(--nm-line); }
+  .facts li:last-child { border-bottom: 0; }
+  .facts b { display: block; font-size: 11px; font-weight: 400; color: var(--nm-muted); }
+  .stat { margin-top: 18px; display: flex; align-items: baseline; gap: 10px; padding: 12px 14px; border: 1px solid var(--nm-line); border-radius: 10px; }
+  .stat strong { font-family: var(--nm-font-code); font-size: 34px; line-height: 1; color: var(--green); }
+  .log { margin-top: 18px; font-size: 13px; }
+  .log li { list-style: none; position: relative; padding: 0 0 10px 22px; }
+  .log li::before { content: "*"; position: absolute; left: 4px; color: var(--amber); }
+  .log time { color: var(--amber); margin-right: 8px; }
+  .log .sha { color: var(--nm-muted); margin-right: 8px; }
+  .open-link { margin-top: 14px; font-family: var(--nm-font-code); font-size: 14px; background: var(--green); color: #04120a; }
+
+  /* ---------- 技能 json ---------- */
+  .json { font-size: 13px; line-height: 1.8; }
+  .json .note { color: var(--nm-muted); }
+  .json .k { color: var(--cyan); }
+  .json .s { color: var(--amber); }
+  .json .p { color: var(--nm-muted); }
+
+  /* ---------- 想法：群通知 → 待办 ---------- */
+  .idea { display: grid; grid-template-columns: 1fr 22px 1fr; gap: 6px; align-items: start; margin-top: 6px; }
+  .col { display: flex; flex-direction: column; gap: 8px; }
+  .col__title { font-size: 11px; color: var(--nm-muted); }
+  .msg, .todo { padding: 8px 10px; border-radius: 10px; font-size: 12px; line-height: 1.45; font-family: var(--nm-font-display); }
+  .msg { background: #1b241e; color: #cfe8d6; border-top-left-radius: 2px; animation: msg-in 9s var(--nm-ease-out) infinite both; }
+  .todo { display: flex; gap: 6px; border: 1px solid rgba(57, 255, 136, 0.4); color: #e6fff0; animation: todo-in 9s var(--nm-ease-out) infinite both; }
+  .todo::before { content: ""; flex: none; width: 12px; height: 12px; margin-top: 2px; border: 1.5px solid var(--green); border-radius: 3px; }
+  .col > :nth-child(3) { animation-delay: 0.7s; }
+  .col > :nth-child(4) { animation-delay: 1.4s; }
+  .arrow { align-self: center; color: var(--green); text-align: center; font-size: 18px; }
+  @keyframes msg-in { 0% { opacity: 0; translate: -10px 0; } 8%, 88% { opacity: 1; translate: 0 0; } 100% { opacity: 0; } }
+  @keyframes todo-in { 0%, 22% { opacity: 0; translate: 10px 0; } 30%, 88% { opacity: 1; translate: 0 0; } 100% { opacity: 0; } }
+  .idea-note { margin-top: 16px; font-family: var(--nm-font-display); font-size: 15px; color: #cfe8d6; }
+
+  /* ---------- 联系 ---------- */
+  .ping { padding: 44px 0 56px; }
+  .ping__text { font-family: var(--nm-font-display); font-size: 19px; line-height: 1.65; color: #f3fff6; }
+  .ping .kbd { display: inline-block; padding: 0 8px; border: 1px solid var(--green); border-radius: 6px; color: var(--green); }
+  .foot { margin-top: 36px; font-size: 11.5px; color: var(--nm-muted); }
+</style>
+</head>
+<body class="nm-grain">
+<main class="nm-page">
+
+  <header class="hero" data-nm-id="hero">
+    <canvas class="nm-particles" data-nm-particles="links" data-nm-color="#39ff88"></canvas>
+    <div class="hero__inner">
+      <div class="status"><span class="status__dot nm-pulse"></span>组队中 · 2026 秋季校园 AI 黑客松</div>
+
+      <p class="cmd"><b>~/team $</b> whoami</p>
+      <h1 class="name">林舟<small>lin-zhou</small></h1>
+      <div class="role"><span>全栈 · 偏后端</span><span>大三 · 计算机</span><span>南湖大学</span></div>
+      <p class="echo"><span data-nm-typewriter><span>上学期上线过一个小程序</span><span>会写 Go，也会写小程序</span><span>能熬夜，也能按时睡</span></span></p>
+
+      <article class="issue" aria-label="招募队友">
+        <div class="issue__meta"><span class="open">Open</span><span>#1 · team/looking-for</span></div>
+        <p class="issue__title">找 1 位<em>会做视觉和交互</em>的设计</p>
+        <p class="issue__body">我负责让它跑起来，你负责让它好看又好用。</p>
+        <div class="labels"><span class="label g">help wanted</span><span class="label c">design</span><span class="label a">UI / 交互</span></div>
+      </article>
+
+      <ul class="nm-chips skills-inline" aria-label="技能">
+        <li class="nm-chip">Go</li><li class="nm-chip">Node.js</li><li class="nm-chip">微信小程序</li><li class="nm-chip">PostgreSQL</li><li class="nm-chip">部署上线</li>
+      </ul>
+      <div class="hint nm-scroll-hint">往下看项目</div>
+    </div>
+  </header>
+
+  <section class="block nm-reveal" data-nm-id="teammate">
+    <p class="block__cmd"><b>~/team $</b> git diff 我们的队伍</p>
+    <div class="nm-terminal diff">
+      <div class="nm-terminal__bar"><span class="nm-terminal__title">team.md</span></div>
+      <div class="nm-terminal__body"><span class="diff-line hunk">@@ 分工 @@</span><span class="diff-line add">林舟：接口、数据库、部署、小程序前端</span><span class="diff-line add">你：视觉、交互、让它好用</span><span class="diff-line add">一起：想清楚到底给谁用</span><span class="diff-line del">一个人从界面画到服务器</span></div>
+    </div>
+    <p class="quote">“我负责让它跑起来，你负责让它好看又好用。”<small>— 林舟的原话</small></p>
+  </section>
+
+  <section class="block nm-reveal" data-nm-id="projects">
+    <p class="block__cmd"><b>~/team $</b> ls projects/</p>
+    <div class="project">
+      <div class="nm-phone" aria-hidden="true">
+        <div class="nm-phone__screen">
+          <svg viewBox="0 0 136 290" width="100%" height="100%" font-family="sans-serif">
+            <rect width="136" height="290" fill="#f5f7f5"/>
+            <text x="12" y="34" font-size="11" font-weight="700" fill="#1d2a1f">书递</text>
+            <text x="38" y="34" font-size="7" fill="#7a8a7e">校园二手教材</text>
+            <rect x="10" y="44" width="116" height="20" rx="10" fill="#fff" stroke="#dfe6e0"/>
+            <text x="20" y="57" font-size="7" fill="#9aa69c">搜课程代码，如 CS101</text>
+            <g font-size="7">
+              <rect x="10" y="74" width="116" height="46" rx="8" fill="#fff"/>
+              <rect x="16" y="80" width="24" height="34" rx="3" fill="#2f7d4f"/>
+              <text x="46" y="90" fill="#1d2a1f" font-weight="700">数据结构（第二版）</text>
+              <text x="46" y="102" fill="#7a8a7e">CS201 · 九成新</text>
+              <text x="46" y="114" fill="#e2531f" font-weight="700">¥15 · 楼下面交</text>
+              <rect x="10" y="126" width="116" height="46" rx="8" fill="#fff"/>
+              <rect x="16" y="132" width="24" height="34" rx="3" fill="#e0b84c"/>
+              <text x="46" y="142" fill="#1d2a1f" font-weight="700">高等数学 上册</text>
+              <text x="46" y="154" fill="#7a8a7e">MA101 · 有笔记</text>
+              <text x="46" y="166" fill="#e2531f" font-weight="700">¥8 · 楼下面交</text>
+              <rect x="10" y="178" width="116" height="46" rx="8" fill="#fff"/>
+              <rect x="16" y="184" width="24" height="34" rx="3" fill="#2a5bd7"/>
+              <text x="46" y="194" fill="#1d2a1f" font-weight="700">大学物理实验</text>
+              <text x="46" y="206" fill="#7a8a7e">PH102 · 八成新</text>
+              <text x="46" y="218" fill="#e2531f" font-weight="700">¥10 · 楼下面交</text>
+            </g>
+            <rect x="10" y="244" width="116" height="26" rx="13" fill="#2f7d4f"/>
+            <text x="68" y="261" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">发布我的旧书</text>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <h3>书递<small>校园二手教材交换小程序</small></h3>
+        <ul class="facts">
+          <li><b>解决什么</b>按课程代码找到学长学姐的旧教材，宿舍楼下面交</li>
+          <li><b>我负责</b>后端（Go）+ 小程序前端</li>
+          <li><b>现在</b>上学期上线，交给学弟维护了</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stat"><strong class="nm-num" data-nm-count="300">300</strong><span>多位同学用过（一学期）</span></div>
+    <ol class="log">
+      <li><span class="sha">a1f3e9c</span><time>3 月</time>第一版：只能按书名搜</li>
+      <li><span class="sha">7c02b4d</span><time>4 月</time>加了课程代码搜索，用的人一下多了</li>
+      <li><span class="sha">e9d41aa</span><time>6 月</time>交给学弟维护</li>
+    </ol>
+    <button class="nm-button nm-arrow open-link" data-nm-href="https://bookswap.example/">看项目介绍</button>
+  </section>
+
+  <section class="block nm-reveal" data-nm-id="skills">
+    <p class="block__cmd"><b>~/team $</b> cat skills.json</p>
+    <div class="nm-terminal json">
+      <div class="nm-terminal__bar"><span class="nm-terminal__title">skills.json</span></div>
+      <div class="nm-terminal__body"><span class="p">{</span>
+  <span class="k">"后端"</span><span class="p">: [</span>
+    <span class="s">"Go"</span>, <span class="s">"Node.js"</span>, <span class="s">"PostgreSQL"</span>
+  <span class="p">],</span>
+  <span class="k">"前端"</span><span class="p">: [</span>
+    <span class="s">"微信小程序"</span>, <span class="s">"会一点 React"</span>
+  <span class="p">],</span>
+  <span class="k">"擅长"</span><span class="p">:</span> <span class="s">"搭接口和数据库"</span>,
+  <span class="k">"不擅长"</span><span class="p">:</span> <span class="s">"配色和排版"</span>
+<span class="p">}</span>
+<span class="note">// 不擅长的那部分，就是我在找你的原因</span></div>
+    </div>
+  </section>
+
+  <section class="block nm-reveal" data-nm-id="idea">
+    <p class="block__cmd"><b>~/team $</b> cat idea.md</p>
+    <h2>这次想做：课程群通知 → 自动变待办</h2>
+    <div class="idea" aria-hidden="true">
+      <div class="col">
+        <span class="col__title">课程群</span>
+        <span class="msg">【通知】周五前交实验报告</span>
+        <span class="msg">明天的课改到 3 教 204</span>
+        <span class="msg">班费 20 元，周末前交</span>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col">
+        <span class="col__title">我的待办</span>
+        <span class="todo">周五前：交实验报告</span>
+        <span class="todo">明天：去 3 教 204</span>
+        <span class="todo">周末前：交班费</span>
+      </div>
+    </div>
+    <p class="idea-note">我一直被课程群的通知刷屏，想做一个把通知自动整理成待办的小工具。具体怎么做，想跟队友一起定。</p>
+  </section>
+
+  <footer class="ping nm-reveal" data-nm-id="ping">
+    <p class="block__cmd"><b>~/team $</b> ./contact --me</p>
+    <p class="ping__text">觉得合适？点页面下方的 <span class="kbd">想聊这个</span>，挑一个话题来找我。</p>
+    <p class="foot">exit 0 · 页面里的项目截图是示意，可运行版本请点上面的链接</p>
+  </footer>
+
+</main>
+</body>
+</html>
